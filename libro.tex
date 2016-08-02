@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage[a4paper,margin=0.5in,landscape]{geometry}
+
+\lstset{
+	language=java,
+	numberstyle=\tiny, 
+	breaklines=true,
+	numbersep=1pt,
+	tabsize=2,
+	xleftmargin=.01in,
+	xrightmargin=.01in,
+	postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}},
+	numbers=left
+}
+
+\begin{document}
+\begin{multicols}{2}
+\section{Arrays y Listas}
+	\subsection{Ordenamiento}
+	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).
+	\lstinputlisting[firstline=7, lastline=33]{./src/Sorting.java}
+
+\section{Mapas}
+Guardan pares (clave, valor). El HashMap no pone las claves en ningún orden en particular. TreeMap ordena las claves de acuerdo a su orden natural. LinkedHashMap pone las claves en el orden en que se ingresen.
+
+Las operaciones .put(), .get() y .containsKey() son \( O(1) \) en HashMap y LinkedHashMap, y \( O(\log n)\) en TreeMap.
+\lstinputlisting[firstline=7, lastline=30]{./src/Mapas.java}
+
+\section{Grafos}
+	\subsection{BFS y DFS}
+	Recorren un grafo a partir de un nodo origen y visitan todos los nodos alcanzables desde éste. El siguiente ejemplo está con DFS pero funciona igual con BFS. 
+	
+	Ambos algoritmos tienen un tiempo de ejecución de \( O(n + m) \) donde \( n \) es el número de nodos y \( m \) es el número de aristas del grafo.
+	\lstinputlisting[firstline=7, lastline=70]{./src/Grafos.java}
+
+	\subsection{Shortest Hop}
+	Modificación de BFS que calcula el camino más corto desde un nodo origen 'S' a todos los demás. Sólo funciona cuando el peso de todas las aristas es 1. Su tiempo de ejecución es el mismo de BFS: \( O(n + m) \).
+	\lstinputlisting[firstline=6, lastline=57]{./src/ShortestHop.java}
+	
+	\subsection{Ordenamiento Topológico}
+	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas (u,v), 'u' aparece en el ordenamiento antes que 'v'. Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. En realidad es una modificación de DFS y su tiempo de ejecución es el mismo: \( O(n + m) \).
+	\lstinputlisting[firstline=6, lastline=44]{./src/TopoSort.java}
+\end{multicols}	
+\end{document}
