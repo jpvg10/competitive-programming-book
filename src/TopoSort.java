@@ -44,7 +44,7 @@ public class TopoSort {
 		for(int i=0; i<adyLen; i++){
 			int v = g[u].get(i);
 			if(seen[v] == 0){
-				return dfs(v);
+				dfs(v);
 			}else if(seen[v] == 1){
 				//Hay un ciclo, retorna falso
 				sinCiclo = false;
