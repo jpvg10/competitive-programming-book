@@ -13,18 +13,18 @@ public class Mapas {
 		String palabras[] = s.split(" ");
 
 		for(int i=0; i<palabras.length; i++){
-			if(!hash.containsKey(palabras[i])){
-				hash.put(palabras[i], 1);
+			if(!map.containsKey(palabras[i])){
+				map.put(palabras[i], 1);
 			}else{
-				hash.put(palabras[i], hash.get(palabras[i])+1);
+				map.put(palabras[i], map.get(palabras[i])+1);
 			}
 		}
 
 		//Obtener un elemento
-		System.out.println(hash.get("tres"));
+		System.out.println(map.get("tres"));
 
 		//Recorrer el mapa
-		for(Entry<String, Integer> e : hash.entrySet()){
+		for(Entry<String, Integer> e : map.entrySet()){
 			System.out.println(e.getKey() + " : " + e.getValue());
 		}
 	}

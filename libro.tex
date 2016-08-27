@@ -19,33 +19,61 @@
 }
 
 \geometry{landscape,letterpaper,tmargin=1.5cm,bmargin=2cm,lmargin=1.6cm,rmargin=1.6cm}
+\setlength{\columnsep}{0.25in}
+\setlength{\columnseprule}{1px}
 
 \begin{document}
 \begin{multicols}{2}
-\section{Arrays y Listas}
-	\subsection{Ordenamiento}
-	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).
-	\lstinputlisting[firstline=7, lastline=33]{./src/Sorting.java}
-
 \section{Mapas}
-Guardan pares (clave, valor). El HashMap no pone las claves en ningún orden en particular. TreeMap ordena las claves de acuerdo a su orden natural. LinkedHashMap pone las claves en el orden en que se ingresen.
+Estructura de datos que guarda pares (clave, valor). El HashMap no pone las claves en ningún orden en particular. TreeMap ordena las claves de acuerdo a su orden natural. LinkedHashMap pone las claves en el orden en que se ingresen.
 
 Las operaciones .put(), .get() y .containsKey() son \( O(1) \) en HashMap y LinkedHashMap, y \( O(\log n)\) en TreeMap.
 \lstinputlisting[firstline=7, lastline=30]{./src/Mapas.java}
+
+\section{Sets}
+Estructura de datos que actúan como ``bolsa'' donde se almacenan elementos, pero no pueden almacenar elementos duplicados.
+
+En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O(\log n)\). Sin embargo, en el TreeSet los elementos quedan ordenados.
+\lstinputlisting[firstline=5, lastline=19]{./src/Sets.java}
 
 \section{Grafos}
 	\subsection{BFS y DFS}
 	Recorren un grafo a partir de un nodo origen y visitan todos los nodos alcanzables desde éste. El siguiente ejemplo está con DFS pero funciona igual con BFS. 
 	
 	Ambos algoritmos tienen un tiempo de ejecución de \( O(n + m) \) donde \( n \) es el número de nodos y \( m \) es el número de aristas del grafo.
-	\lstinputlisting[firstline=7, lastline=70]{./src/Grafos.java}
+	\lstinputlisting[firstline=7, lastline=67]{./src/Grafos.java}
 
 	\subsection{Shortest Hop}
-	Modificación de BFS que calcula el camino más corto desde un nodo origen 'S' a todos los demás. Sólo funciona cuando el peso de todas las aristas es 1. Su tiempo de ejecución es el mismo de BFS: \( O(n + m) \).
-	\lstinputlisting[firstline=6, lastline=57]{./src/ShortestHop.java}
+	Modificación de BFS que calcula el camino más corto desde un nodo origen 's' a todos los demás. Sólo funciona cuando el peso de todas las aristas es 1. Su tiempo de ejecución es el mismo de BFS: \( O(n + m) \).
+	\lstinputlisting[firstline=7, lastline=54]{./src/ShortestHop.java}
 	
 	\subsection{Ordenamiento Topológico}
-	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas (u,v), 'u' aparece en el ordenamiento antes que 'v'. Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. En realidad es una modificación de DFS y su tiempo de ejecución es el mismo: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo.
-	\lstinputlisting[firstline=6, lastline=57]{./src/TopoSort.java}
+	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas (u,v), 'u' aparece en el ordenamiento antes que 'v'. Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. En realidad es una modificación de DFS y su tiempo de ejecución es el mismo: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
+	\lstinputlisting[firstline=6, lastline=56]{./src/TopoSort.java}
+
+\section{El problema de la mochila (Knapsack)}
+Se tiene una mochila con capacidad \(W\), y \(n\) items con un peso \(w_i\) y un valor \(v_i\) cada uno. Se quiere hallar el conjunto de items que maximicen el valor total pero cuyos pesos no excedan \(W\). Su tiempo de ejecución es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
+\lstinputlisting[firstline=4, lastline=47]{./src/Knapsack.java}
+
+\section{Union-Find}
+Estructura de datos que soporta las siguientes operaciones eficientemente:
+\begin{itemize}
+\item Unir dos elementos \(p,q\), es decir, indicar que pertenecen al mismo conjunto
+\item Determinar si dos elementos \(p,q\) pertenecen al mismo conjunto o no
+\end{itemize}
+\lstinputlisting[firstline=2]{./src/UnionFind.java}
+
+\section{Algoritmo de Euclides}
+Se utiliza para hallar el máximo común divisor (MCD) entre dos números. También se puede usar para hallar el mínimo común múltiplo (MCM).
+
+Para hallar el MCM o MCD entre más de dos números se puede hacer de manera ``iterativa'': \( MCD(a, b, c) = MCD(MCD(a, b), c) \).
+\lstinputlisting[firstline=3, lastline=15]{./src/Euclides.java}
+
+\section{Otros}
+	\subsection{Ordenamiento de Arrays y Listas}
+	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).	\lstinputlisting[firstline=7, lastline=27]{./src/Sorting.java}
+	
+	\subsection{Imprimir números decimales redondeados}
+	Generalmente basta con esta función de Java para redondear correctamente números decimales.	\lstinputlisting[firstline=4, lastline=9]{./src/Redondear.java}
 \end{multicols}	
 \end{document}

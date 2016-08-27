@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class ShortestHop {
 
@@ -8,48 +9,45 @@ public class ShortestHop {
 	static int dist[];
 
 	public static void main(String[] args) {
-		int nodes = 10;
+		int n = 10;
 
-		seen = new boolean[nodes];
-		dist = new int[nodes];
+		seen = new boolean[n];
+		dist = new int[n];
 
-		g = new ArrayList[nodes];
-		for(int i = 0; i < nodes; i++){
+		g = new ArrayList[n];
+		for(int i=0; i<n; i++){
 			g[i] = new ArrayList<Integer>();
 		}
 
 		int s = 0;
 		shortestHop(s);
-		//Despues de llamar este metodo, en
-		//dist[i] esta la distancia mas corta (s,i)
+		//Despues de llamar este metodo, en dist[i] esta la distancia mas corta (s,i)
 	}
 
-	public static void shortestHop(int s){
+	public static void shortestHop(int u){
 		int n = g.length;
 
-		//Distancia "infinita" hacia todos los nodos
-		//Distancia 0 hacia el nodo de origen
+		//Distancia "infinita" hacia todos los nodos		
 		for(int i=0; i<n; i++){
 			dist[i] = Integer.MAX_VALUE;
 		}
-		dist[s] = 0;
+		//Distancia 0 hacia el nodo de origen
+		dist[u] = 0;
 
 		//BFS "modificado"
-		LinkedList<Integer> queue = new LinkedList<Integer>();
-
-		seen[s] = true;
-		queue.add(s);
-
-		while(!queue.isEmpty()){
-			s = queue.poll();
-			int adyLen = g[s].size();
-			for(int i=0; i<adyLen; i++){
-				int w = g[s].get(i);
-				if(!seen[w]){
-					seen[w] = true;
-					queue.add(w);
-					//Lo unico que cambia es que se calcula el dist[w]
-					dist[w] = dist[s] + 1;
+		seen[u] = true;
+		Queue<Integer> q = new LinkedList<Integer>();		
+		q.add(u);
+		while(!q.isEmpty()){
+			u = q.poll();
+			int len = g[u].size();
+			for(int i=0; i<len; i++){
+				int v = g[u].get(i);
+				if(!seen[v]){
+					seen[v] = true;
+					q.add(v);
+					//Lo unico que cambia es que se calcula el dist[v]
+					dist[v] = dist[u] + 1;
 				}
 			}
 		}

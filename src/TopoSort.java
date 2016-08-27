@@ -8,23 +8,22 @@ public class TopoSort {
 	static LinkedList<Integer> topoSort;
 
 	public static void main(String[] args) {
-		int nodes = 10;
+		int n = 10;
 
-		seen = new int[nodes];
-
-		g = new ArrayList[nodes];
-		for(int i = 0; i < nodes; i++){
-			g[i] = new ArrayList<Integer>();
-		}
-
+		seen = new int[n];
 		topoSort = new LinkedList<Integer>();
+
+		g = new ArrayList[n];
+		for(int i=0; i<n; i++){
+			g[i] = new ArrayList<Integer>();
+		}		
 
 		boolean sinCiclo = true;
 
 		//Es necesario hacer el ciclo para visitar todos los nodos
-		for(int u=0; u<nodes; u++){
+		for(int u=0; u<n; u++){
 			if(seen[u] == 0){
-				sinCiclo = dfs(u);
+				sinCiclo = topoDfs(u);
 			}
 		}
 
@@ -35,22 +34,22 @@ public class TopoSort {
 		}
 	}
 
-	private static boolean dfs(int u){
+	private static boolean topoDfs(int u){
 		//DFS "modificado" para hacer ordenamiento topologico
 		//Se marca 'u' como 'gris'
 		seen[u] = 1;
-		int adyLen = g[u].size();
+		int len = g[u].size();
 		boolean sinCiclo = true;
-		for(int i=0; i<adyLen; i++){
+		for(int i=0; i<len; i++){
 			int v = g[u].get(i);
 			if(seen[v] == 0){
-				dfs(v);
+				topoDfs(v);
 			}else if(seen[v] == 1){
 				//Hay un ciclo, retorna falso
 				sinCiclo = false;
 			}
 		}
-		//Se agrega el nodo 'u' al inicio de esta lista y se marca 'negro'
+		//Se agrega el nodo 'u' al inicio de la lista y se marca como 'negro'
 		seen[u] = 2;
 		topoSort.addFirst(u);
 		return sinCiclo;
