@@ -59,6 +59,10 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 Se tiene una mochila con capacidad \(W\), y \(n\) items con un peso \(w_i\) y un valor \(v_i\) cada uno. Se quiere hallar el conjunto de items que maximicen el valor total pero cuyos pesos no excedan \(W\). Su tiempo de ejecución es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
 \lstinputlisting[firstline=4, lastline=47]{./src/Knapsack.java}
 
+\section{KMP}
+Algoritmo para buscar una cadena \(pattern\) dentro de una cadena \(text\). Su tiempo de ejecución es de \( O(m+n) \) donde \(m\) es la longitud de \(text\) y \(n\) es la longitud de \(pattern\).
+\lstinputlisting[firstline=4, lastline=45]{./src/KMP.java}
+
 \section{Union-Find}
 Estructura de datos que soporta las siguientes operaciones eficientemente:
 \begin{itemize}
