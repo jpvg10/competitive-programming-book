@@ -41,23 +41,27 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 	Recorren un grafo a partir de un nodo origen y visitan todos los nodos alcanzables desde éste. El siguiente ejemplo está con DFS pero funciona igual con BFS. 
 	
 	Ambos algoritmos tienen un tiempo de ejecución de \( O(n + m) \) donde \( n \) es el número de nodos y \( m \) es el número de aristas del grafo.
-	\lstinputlisting[firstline=7, lastline=67]{./src/Grafos.java}
+	\lstinputlisting[firstline=7, lastline=65]{./src/Grafos.java}
 
 	\subsection{Shortest Hop}
 	Modificación de BFS que calcula el camino más corto desde un nodo origen 's' a todos los demás. Sólo funciona cuando el peso de todas las aristas es 1. Su tiempo de ejecución es el mismo de BFS: \( O(n + m) \).
-	\lstinputlisting[firstline=7, lastline=54]{./src/ShortestHop.java}
+	\lstinputlisting[firstline=7, lastline=53]{./src/ShortestHop.java}
 	
 	\subsection{Ordenamiento Topológico}
 	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas (u,v), 'u' aparece en el ordenamiento antes que 'v'. Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. En realidad es una modificación de DFS y su tiempo de ejecución es el mismo: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
-	\lstinputlisting[firstline=6, lastline=56]{./src/TopoSort.java}
+	\lstinputlisting[firstline=6, lastline=54]{./src/TopoSort.java}
 	
 	\subsection{Componentes Fuertemente Conexas (Algoritmo de Tarjan)}
 	Calcula la componente fuertemente conexa a la que pertenece cada nodo de un grafo dirigido. Si dos nodos \( u,v \) están en la misma componente, significa que existe un camino de \( u \) a \( v \) y de \( v \) a \( u \). Su tiempo de ejecución es \( O(n + m) \).
-	\lstinputlisting[firstline=6, lastline=71]{./src/Tarjan.java}
+	\lstinputlisting[firstline=6, lastline=68]{./src/Tarjan.java}
+	
+	\subsection{Puntos de Articulación}
+	Halla los puntos de articulación de un grafo. Un punto de articulación es un nodo del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un punto de articulación es un nodo que si se quitara incrementaría el número de componentes conexas. El tiempo de ejecución del algoritmo es \( O(n + m) \).
+	\lstinputlisting[firstline=5, lastline=62]{./src/ArticulationPoints.java}
 
 \section{El problema de la mochila (Knapsack)}
 Se tiene una mochila con capacidad \(W\), y \(n\) items con un peso \(w_i\) y un valor \(v_i\) cada uno. Se quiere hallar el conjunto de items que maximicen el valor total pero cuyos pesos no excedan \(W\). Su tiempo de ejecución es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
-\lstinputlisting[firstline=4, lastline=47]{./src/Knapsack.java}
+\lstinputlisting[firstline=4, lastline=45]{./src/Knapsack.java}
 
 \section{KMP}
 Algoritmo para buscar una cadena \(pattern\) dentro de una cadena \(text\). Su tiempo de ejecución es de \( O(m+n) \) donde \(m\) es la longitud de \(text\) y \(n\) es la longitud de \(pattern\).
@@ -79,9 +83,15 @@ Para hallar el MCM o MCD entre más de dos números se puede hacer de manera ``i
 
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas}
-	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).	\lstinputlisting[firstline=7, lastline=27]{./src/Sorting.java}
+	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).	\lstinputlisting[firstline=7, lastline=25]{./src/Sorting.java}
 	
 	\subsection{Imprimir números decimales redondeados}
 	Generalmente basta con esta función de Java para redondear correctamente números decimales.	\lstinputlisting[firstline=4, lastline=9]{./src/Redondear.java}
+	
+	\subsection{BufferedReader y BufferedWriter}
+	\(Scanner\) es sencillo de utilizar pero es lento. Se recomienda utilizar siempre \(BufferedReader\) para leer entradas.
+	
+	En algunas ocasiones también se necesitará un modo más rápido que \(System.out.println()\) para imprimr. \(BufferedWriter\) es más rápido, aunque casi nunca será necesario. Sin embargo, nunca está de más usarlo.
+	\lstinputlisting[firstline=9, lastline=23]{./src/ReaderWriter.java}
 \end{multicols}	
 \end{document}

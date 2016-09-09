@@ -11,15 +11,13 @@ public class Grafos {
 		int n = 10;
 
 		seen = new boolean[n];
-
 		g = new ArrayList[n];
 		for(int i = 0; i < n; i++){
 			g[i] = new ArrayList<Integer>();
 		}
-
-		int s = 0;
-
+		
 		//Visita solo los nodos que son alcanzables desde el nodo 's'
+		int s = 0;
 		dfs(s);
 
 		//Con el vector 'seen' vemos cuales son estos nodos

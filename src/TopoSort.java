@@ -12,14 +12,12 @@ public class TopoSort {
 
 		seen = new int[n];
 		topoSort = new LinkedList<Integer>();
-
 		g = new ArrayList[n];
 		for(int i=0; i<n; i++){
 			g[i] = new ArrayList<Integer>();
 		}		
 
 		boolean sinCiclo = true;
-
 		//Es necesario hacer el ciclo para visitar todos los nodos
 		for(int u=0; u<n; u++){
 			if(seen[u] == 0){

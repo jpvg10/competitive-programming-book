@@ -13,7 +13,6 @@ public class ShortestHop {
 
 		seen = new boolean[n];
 		dist = new int[n];
-
 		g = new ArrayList[n];
 		for(int i=0; i<n; i++){
 			g[i] = new ArrayList<Integer>();

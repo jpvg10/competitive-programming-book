@@ -27,7 +27,6 @@ class UnionFind{
 	public void union(int p, int q){
 		int rootP = root(p);
 		int rootQ = root(q);
-
 		if(rootP != rootQ){
 			if(size[rootP] < size[rootQ]){
 				parent[rootP] = rootQ;

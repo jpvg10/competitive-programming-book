@@ -5,7 +5,6 @@ public class Knapsack {
 		// n = numero de items, W = capacidad de la mochila
 		int n = 4;
 		int W = 8;
-
 		int values[] = {15, 10, 9, 5};
 		int weights[] = {1, 5, 3, 4};
 
@@ -42,7 +41,6 @@ public class Knapsack {
 				j = j-weights[i];
 			}
 		}
-
 		//Si chosen[i]==true es porque i se incluyo
 	}
 }
