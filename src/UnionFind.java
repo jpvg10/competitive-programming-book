@@ -49,3 +49,18 @@ class UnionFind{
 		return components;
 	}
 }
+
+class Main {
+	public static void main(String[] args){
+		UnionFind uf = new UnionFind(5);
+		uf.union(0, 2);
+		uf.union(1, 0);
+		uf.union(3, 4);
+		
+		//El numero de componentes es
+		int comp = uf.getComponents();
+		
+		//Dos nodos estan conectados?
+		boolean connected = uf.connected(0, 3);
+	}
+}
