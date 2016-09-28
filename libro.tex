@@ -47,7 +47,7 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 	
 	\subsection{Ordenamiento Topológico}
 	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas \((u,v)\), \(u\) aparece en el ordenamiento antes que \(v\). Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. En realidad es una modificación de DFS y su tiempo de ejecución es el mismo: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
-	\lstinputlisting[firstline=6, lastline=54]{./src/TopoSort.java}
+	\lstinputlisting[firstline=6, lastline=56]{./src/TopoSort.java}
 	
 	\subsection{Componentes Fuertemente Conexas (Algoritmo de Tarjan)}
 	Calcula la componente fuertemente conexa a la que pertenece cada nodo de un grafo dirigido. Si dos nodos \( u,v \) están en la misma componente, significa que existe un camino de \( u \) a \( v \) y de \( v \) a \( u \). Su tiempo de ejecución es \( O(n + m) \).

@@ -12,16 +12,18 @@ public class TopoSort {
 
 		seen = new int[n];
 		topoSort = new LinkedList<Integer>();
+
 		g = new ArrayList[n];
-		for(int i=0; i<n; i++){
+		for(int i = 0; i < n; i++){
 			g[i] = new ArrayList<Integer>();
 		}		
 
 		boolean sinCiclo = true;
+
 		//Es necesario hacer el ciclo para visitar todos los nodos
 		for(int u=0; u<n; u++){
 			if(seen[u] == 0){
-				sinCiclo = topoDfs(u);
+				sinCiclo = sinCiclo && topoDfs(u);
 			}
 		}
 
@@ -41,13 +43,13 @@ public class TopoSort {
 		for(int i=0; i<len; i++){
 			int v = g[u].get(i);
 			if(seen[v] == 0){
-				topoDfs(v);
+				sinCiclo = sinCiclo && topoDfs(v);
 			}else if(seen[v] == 1){
 				//Hay un ciclo, retorna falso
 				sinCiclo = false;
 			}
 		}
-		//Se agrega el nodo 'u' al inicio de la lista y se marca como 'negro'
+		//Se agrega el nodo 'u' al inicio de la lista y se marca 'negro'
 		seen[u] = 2;
 		topoSort.addFirst(u);
 		return sinCiclo;
