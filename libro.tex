@@ -23,7 +23,11 @@
 \setlength{\columnseprule}{1px}
 
 \begin{document}
+
 \begin{multicols}{2}
+
+\tableofcontents
+
 \section{Mapas}
 Estructura de datos que guarda pares (clave, valor). El HashMap no pone las claves en ningún orden en particular. TreeMap ordena las claves de acuerdo a su orden natural. LinkedHashMap pone las claves en el orden en que se ingresen.
 
@@ -64,6 +68,9 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 	\subsection{Algoritmo de Dijkstra}
 	Halla la distancia más corta desde un nodo origen \(src\) hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Su tiempo de ejecución es \( O(m + n\log n) \)
 	\lstinputlisting[firstline=5, lastline=76]{./src/Dijkstra.java}
+	
+	\subsection{Algoritmo de Floyd-Warshall}
+	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia.
 
 \section{El problema de la mochila (Knapsack)}
 Se tiene una mochila con capacidad \(W\), y \(n\) items con un peso \(w_i\) y un valor \(v_i\) cada uno. Se quiere hallar el conjunto de items que maximicen el valor total pero cuyos pesos no excedan \(W\). Su tiempo de ejecución es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
@@ -81,12 +88,34 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 \end{itemize}
 \lstinputlisting[firstline=2, lastline=66]{./src/UnionFind.java}
 
-\section{Algoritmo de Euclides}
-Se utiliza para hallar el máximo común divisor (MCD) entre dos números. También se puede usar para hallar el mínimo común múltiplo (MCM).
+\section{Teoría de números}
+
+	\subsection{Algoritmo de Euclides}
+	Se utiliza para hallar el máximo común divisor (MCD) entre dos números. También se puede usar para hallar el mínimo común múltiplo (MCM).
 
 Para hallar el MCM o MCD entre más de dos números se puede hacer de manera ``iterativa'': \( MCD(a, b, c) = MCD(MCD(a, b), c) \).
 \lstinputlisting[firstline=3, lastline=15]{./src/Euclides.java}
 
+	\subsection{Criba  de Eratóstenes}
+	Algoritmo para hallar los números primos menores o iguales a \( n \). Su tiempo de ejecución es \( O(n \log \log n) \).
+	
+	\subsection{Factorización prima de un número}
+	Se hace una Criba de Eratóstenes hasta \( \left \lceil{\sqrt{n}}\right \rceil  \). Luego, se verifica si \(n \) es divisible por los números primos hallados.
+	
+	\subsection{Verificar si un número es primo}
+	Dependiendo del problema, puede que nos sirva la forma ``fuerza bruta''. Esta forma tiene una complejidad de \( O(\sqrt{n}) \). Sin embargo, si tenemos números de más de 64 bits (que no caben en un \emph{long}) ya esta forma no es viable. 
+	
+	La clase BigInteger provee un método probabilístico para determinar si un número es primo. Si el número es compuesto, el método retona \emph{false} siempre. Si el método retorna \emph{true}, hay una probabilidad de \( 1-\frac{1}{2^x} \) de que el número sea primo, donde \(x\) es un parámetro que se le pasa a la función. Generalmente un valor de \(x = 10\) está bien.
+	
+	\subsection{Los \(n\) primeros números primos}
+	Si queremos hallar los primeros \( n \) números primos, la criba de Eratóstenes	no nos puede ayudar, porque no sabemos hasta dónde tenemos que buscar.
+	
+	Podemos verificar si un número \(x\) es primo o no probando si es divisible por los primos \( \leq \sqrt{x} \). Partimos del hecho de que el primer número primo es el 2.
+	\[ p_{1} = 2 \]
+	
+	Suponga que se está buscando el \( p_{k+1} \) y se tiene como candidato a un número \( x \). En el momento se conocen los primeros \( k \) primos, y \( p_{k} < x \). Por ende, se conocen todos los primos menores a \( \leq \sqrt{x} \). Usamos entonces los primos hallados anteriormente para verificar si \( x \) es primo o no. Si lo es, lo agregamos a la lista. Si no lo es, seguimos buscando. Paramos cuando hallemos \( n \) primos.
+	
+		
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas}
 	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).	\lstinputlisting[firstline=7, lastline=25]{./src/Sorting.java}
@@ -97,7 +126,7 @@ Para hallar el MCM o MCD entre más de dos números se puede hacer de manera ``i
 	\subsection{BufferedReader y BufferedWriter}
 	\(Scanner\) es sencillo de utilizar pero es lento. Se recomienda utilizar siempre \(BufferedReader\) para leer entradas.
 	
-	En algunas ocasiones también se necesitará un modo más rápido que \(System.out.println()\) para imprimr. \(BufferedWriter\) es más rápido, aunque casi nunca será necesario. Sin embargo, nunca está de más usarlo.
+	En algunas ocasiones también se necesitará un modo más rápido que \(System.out.println()\) para imprimr. \(BufferedWriter\) es más rápido, nunca está de más usarlo.
 	\lstinputlisting[firstline=9, lastline=23]{./src/ReaderWriter.java}
 \end{multicols}	
 \end{document}
