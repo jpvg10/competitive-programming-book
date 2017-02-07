@@ -98,30 +98,28 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	Dependiendo del problema, puede que nos sirva la forma ``fuerza bruta''. Esta forma tiene una complejidad de \( O(\sqrt{n}) \). Sin embargo, si tenemos números de más de 64 bits (que no caben en un \emph{long}) ya esta forma no es viable. 
 	
 	La clase BigInteger provee un método probabilístico para determinar si un número es primo. Si el número es compuesto, el método retona \emph{false} siempre. Si el método retorna \emph{true}, hay una probabilidad de \( 1-\frac{1}{2^x} \) de que el número sea primo, donde \(x\) es un parámetro que se le pasa a la función. Generalmente un valor de \(x = 10\) está bien.
-	\lstinputlisting[firstline=5, lastline=27]{./src/CheckPrime.java}
+	\lstinputlisting[firstline=5, lastline=28]{./src/CheckPrime.java}
 
 	\subsection{Criba  de Eratóstenes}
 	Algoritmo para hallar los números primos menores o iguales a \( n \). Su tiempo de ejecución es \( O(n \log \log n) \).
-	\lstinputlisting[firstline=7, lastline=23]{./src/Sieve.java}
+	\lstinputlisting[firstline=6, lastline=22]{./src/Sieve.java}
 	
 	\subsection{Factorización prima de un número}
 	Se hace una Criba de Eratóstenes hasta \( n \). Luego, se verifica si \( n \) es divisible por los números primos hallados. El método retorna un HashMap donde la \emph{clave} es el factor primo y el \emph{valor} su multiplicidad.
-	\lstinputlisting[firstline=25, lastline=42]{./src/Sieve.java}	
+	\lstinputlisting[firstline=24, lastline=46]{./src/Sieve.java}	
 	
-	\subsection{Cantidad de divisores de un número}
-	Este método utiliza la factorización prima descrita en la sección anterior para hallar la cantidad de divisores que tiene un número. No lista los divisores, sólo dice cuántos son.
-	\lstinputlisting[firstline=44, lastline=54]{./src/Sieve.java}
-
 	\subsection{Los \(n\) primeros números primos}
-	Si queremos hallar los primeros \( n \) números primos, la criba de Eratóstenes	no nos puede ayudar, porque no sabemos hasta dónde tenemos que buscar. Con este método se optimiza un poco el acercamiento ``fuerza bruta'' a este problema.	
+	Si queremos hallar los primeros \( n \) números primos, la Criba de Eratóstenes	no nos puede ayudar, porque no sabemos hasta dónde tenemos que buscar. Con este método se optimiza un poco el acercamiento ``fuerza bruta'' a este problema.	
 	\lstinputlisting[firstline=5, lastline=33]{./src/GeneratePrimes.java}	
 		
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas}
-	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).	\lstinputlisting[firstline=7, lastline=25]{./src/Sorting.java}
+	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).	
+	\lstinputlisting[firstline=7, lastline=25]{./src/Sorting.java}
 	
 	\subsection{Imprimir números decimales redondeados}
-	Generalmente basta con esta función de Java para redondear correctamente números decimales.	\lstinputlisting[firstline=4, lastline=9]{./src/Redondear.java}
+	Generalmente basta con esta función de Java para redondear correctamente números decimales.	
+	\lstinputlisting[firstline=4, lastline=9]{./src/Redondear.java}
 	
 	\subsection{BufferedReader y BufferedWriter}
 	\(Scanner\) es sencillo de utilizar pero es lento. Se recomienda utilizar siempre \(BufferedReader\) para leer entradas.

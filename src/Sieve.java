@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 public class Sieve {
 	
@@ -11,7 +10,7 @@ public class Sieve {
 		for(int i=2; i<=n; i++){
 			if(!marked[i]){
 				primes.add(i);
-				int j = 2*i;
+				int j = i*i;
 				while(j <= n){
 					marked[j] = true;
 					j = j+i;
@@ -24,8 +23,9 @@ public class Sieve {
 	
 	//Usa el metodo sieve()
 	public static HashMap<Integer, Integer> factor(int n){
-		ArrayList<Integer> primes = sieve(n);
-		HashMap<Integer, Integer> primeFactors = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> primeFactors = new HashMap<Integer, Integer>();		
+		int s = (int) Math.ceil(Math.sqrt(n));
+		ArrayList<Integer> primes = sieve(s);
 		
 		for(int p: primes){
 			while(n % p == 0){
@@ -38,18 +38,10 @@ public class Sieve {
 			}
 		}
 		
-		return primeFactors;
-	}
-	
-	//Usa el metodo factor(), que a su vez usa a sieve()
-	public static int divisors(int n){
-		int div = 1;
-		HashMap<Integer, Integer> primeFactors = factor(n);
-		
-		for(Entry<Integer, Integer> e: primeFactors.entrySet()){
-			div = div * (e.getValue() + 1);
+		if(n > 1){
+			primeFactors.put(n, 1);
 		}
 		
-		return div;		
+		return primeFactors;
 	}
 }
