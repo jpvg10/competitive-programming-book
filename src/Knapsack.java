@@ -2,7 +2,6 @@
 public class Knapsack {
 
 	public static void main(String[] args) {
-		// n = numero de items, W = capacidad de la mochila
 		int n = 4;
 		int W = 8;
 		int values[] = {15, 10, 9, 5};
