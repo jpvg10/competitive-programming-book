@@ -4,7 +4,9 @@ import java.util.HashMap;
 public class Sieve {
 	
 	public static ArrayList<Integer> sieve(int n){
-		boolean marked[] = new boolean[n+1];		
+		boolean marked[] = new boolean[n+1];
+		marked[0] = true;
+		marked[1] = true;
 		ArrayList<Integer> primes = new ArrayList<Integer>();
 		
 		for(int i=2; i<=n; i++){
