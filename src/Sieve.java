@@ -12,6 +12,7 @@ public class Sieve {
 		for(int i=2; i<=n; i++){
 			if(!marked[i]){
 				primes.add(i);
+				//OJO: Si esta teniendo problemas de overflow, cambie la siguiente linea por j = 2*i. Si sigue teniendo problemas, probablemente necesite una Criba Segmentada
 				int j = i*i;
 				while(j <= n){
 					marked[j] = true;

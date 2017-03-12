@@ -73,7 +73,7 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia.
 
 \section{El problema de la mochila (Knapsack)}
-Se tiene una mochila con capacidad \( W \), y \( n \) items con un peso \( w_i \) y un valor \( v_i \) cada uno. Se quiere hallar el conjunto de items que maximicen el valor total pero cuyos pesos no excedan \( W \). Su tiempo de ejecución es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
+Se tiene una mochila con capacidad \( W \), y \( n \) items con un peso \( w_i \) y un valor \( v_i \) cada uno. Se quiere hallar el conjunto de items tal que la suma de sus pesos no exceda \( W \), y que la suma de sus valores sea lo más grande posible. Su tiempo de ejecución es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
 \lstinputlisting[firstline=4, lastline=44]{./src/Knapsack.java}
 
 \section{KMP}
@@ -88,6 +88,13 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 \end{itemize}
 \lstinputlisting[firstline=2, lastline=66]{./src/UnionFind.java}
 
+\section{Programación dinámica}
+	\subsection{Paths in a grid}	
+	\subsection{Longest Increasing Subsequence}
+	\subsection{Longest Common Subsequence}
+	\subsection{Coin Change Problem}
+	\subsection{Edit Distance}	
+
 \section{Teoría de números}
 	\subsection{Algoritmo de Euclides}
 	Se utiliza para hallar el máximo común divisor (MCD) entre dos números. También se puede usar para hallar el mínimo común múltiplo (MCM).
@@ -101,20 +108,16 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 
 	\subsection{Criba  de Eratóstenes}
 	Algoritmo para hallar los números primos menores o iguales a \( n \). Su tiempo de ejecución es \( O(n \log \log n) \).
-	\lstinputlisting[firstline=6, lastline=24]{./src/Sieve.java}
+	\lstinputlisting[firstline=6, lastline=25]{./src/Sieve.java}
 	
 	\subsection{Factorización prima de un número}
-	Retorna un HashMap donde la \emph{clave} es el factor primo y el \emph{valor} su multiplicidad.
-	\lstinputlisting[firstline=26, lastline=48]{./src/Sieve.java}	
-	
-	\subsection{Los \(n\) primeros números primos}
-	Si queremos hallar los primeros \( n \) números primos, la Criba de Eratóstenes	no nos puede ayudar, porque no sabemos hasta dónde tenemos que buscar. Con este método se optimiza un poco el acercamiento ``fuerza bruta'' a este problema.	
-	\lstinputlisting[firstline=5, lastline=33]{./src/GeneratePrimes.java}	
+	Retorna un HashMap donde la \emph{clave} es el factor primo y el \emph{valor} su multiplicidad. Se puede modificar fácilmente para retornar una lista de todos los factores, o retornar la cantidad de factores. Si tiene que factorizar muchos números, considere hacer la Criba una sola vez por fuera del método.
+	\lstinputlisting[firstline=27, lastline=49]{./src/Sieve.java}
 		
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas}
 	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).	
-	\lstinputlisting[firstline=7, lastline=25]{./src/Sorting.java}
+	\lstinputlisting[firstline=7, lastline=15]{./src/Sorting.java}
 	
 	\subsection{Imprimir números decimales redondeados}
 	Generalmente basta con esta función de Java para redondear correctamente números decimales.	
