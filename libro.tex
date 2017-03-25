@@ -5,6 +5,7 @@
 \usepackage{xcolor}
 \usepackage{multicol}
 \usepackage{geometry}
+\usepackage{amsmath}
 
 \lstset{
 	language=java,
@@ -70,7 +71,19 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 	\lstinputlisting[firstline=5, lastline=76]{./src/Dijkstra.java}
 	
 	\subsection{Algoritmo de Floyd-Warshall}
-	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia.
+	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia, y puede tener aristas con peso negativo. Sin embargo, no puede tener ciclos de peso negativo. En caso de que exista un ciclo negativo, el algoritmo lo detectará. Si todas las artistas son no-negativas, se puede omitir la comprobación del ciclo negativo.
+	La matriz de adyacencia debe armarse así:
+	\[
+		\text{grafo}[i, j] = \left \{ 
+			\begin{array}{lcc}
+             	0 & si & i = j
+             	\\ c_{i,j} & si & \text{existe una arista de } i \text{ a } j \text{ con costo } c_{i,j}
+             	\\ \infty & si & i \neq j \text{ y no existe arista de } i \text{ a } j 
+             \end{array}
+   		\right.
+	\]
+	La complejidad del alrgoritmo es \( O(n^3) \).
+	\lstinputlisting[firstline=4, lastline=48]{./src/FloydWarshall.java}
 
 \section{KMP}
 Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}. Su complejidad es de \( O(m+n) \) donde \( m \) es la longitud de \emph{text} y \( n \) es la longitud de \emph{pattern}. Retorna la posición donde inicia la primera ocurrencia de \emph{text} dentro de \emph{pattern}, o -1 si no existe.
