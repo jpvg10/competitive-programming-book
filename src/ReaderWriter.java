@@ -9,10 +9,16 @@ public class ReaderWriter {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//Solo lee por lineas
+		//Ciclo hasta end of input
 		String s;
 		while((s = br.readLine()) != null){
-			int n = Integer.parseInt(br.readLine());
-			String l[] = br.readLine().split(" ");
+			String l[] = s.split(" ");
+		}
+		
+		//Ciclo con numero de casos
+		int t = Integer.parseInt(br.readLine());
+		for(int i=0; i<t; i++){
+			String l[] = br.readLine().split();
 		}
 
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));

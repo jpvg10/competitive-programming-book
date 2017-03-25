@@ -42,59 +42,58 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 
 \section{Grafos}
 	\subsection{BFS y DFS}
-	Recorren un grafo a partir de un nodo origen y visitan todos los nodos alcanzables desde éste. Ambos algoritmos tienen un tiempo de ejecución de \( O(n + m) \) donde \( n \) es el número de nodos y \( m \) es el número de aristas del grafo. El siguiente ejemplo está con DFS pero funciona igual con BFS.	
+	Recorren un grafo a partir de un nodo origen y visitan todos los nodos alcanzables desde éste. Ambos algoritmos tienen una complejidad de \( O(n + m) \) donde \( n \) es el número de nodos y \( m \) es el número de aristas del grafo. El siguiente ejemplo está con DFS pero funciona igual con BFS.	
 	\lstinputlisting[firstline=7, lastline=65]{./src/Grafos.java}
 
 	\subsection{Shortest Hop}
-	Modificación de BFS que calcula el camino más corto desde un nodo origen \( s \) a todos los demás. Sólo funciona cuando el peso de todas las aristas es 1. Su tiempo de ejecución es el mismo de BFS: \( O(n + m) \).
+	Modificación de BFS que calcula el camino más corto desde un nodo origen \( s \) a todos los demás. Sólo funciona cuando el peso de todas las aristas es 1. Su complejidad es la misma de BFS: \( O(n + m) \).
 	\lstinputlisting[firstline=7, lastline=53]{./src/ShortestHop.java}
 	
 	\subsection{Ordenamiento Topológico}
-	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas \( (u,v) \), \(u\) aparece en el ordenamiento antes que \(v\). Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. En realidad es una modificación de DFS y su tiempo de ejecución es el mismo: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
+	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas \( (u,v) \), \(u\) aparece en el ordenamiento antes que \(v\). Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. En realidad es una modificación de DFS y complejidad es la misma: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
 	\lstinputlisting[firstline=6, lastline=56]{./src/TopoSort.java}
 	
 	\subsection{Componentes Fuertemente Conexas (Algoritmo de Tarjan)}
-	Calcula la componente fuertemente conexa a la que pertenece cada nodo de un grafo dirigido. Si dos nodos \( u, v \) están en la misma componente, significa que existe un camino de \( u \) a \( v \) y uno de \( v \) a \( u \). Su tiempo de ejecución es \( O(n + m) \).
+	Calcula la componente fuertemente conexa a la que pertenece cada nodo de un grafo dirigido. Si dos nodos \( u, v \) están en la misma componente, significa que existe un camino de \( u \) a \( v \) y uno de \( v \) a \( u \). Su complejidad es \( O(n + m) \).
 	\lstinputlisting[firstline=6, lastline=68]{./src/Tarjan.java}
 	
 	\subsection{Puntos de Articulación}
-	Halla los puntos de articulación de un grafo. Un punto de articulación es un nodo del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un punto de articulación es un nodo que si se quitara incrementaría el número de componentes conexas. El tiempo de ejecución del algoritmo es \( O(n + m) \).
+	Halla los puntos de articulación de un grafo. Un punto de articulación es un nodo del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un punto de articulación es un nodo que si se quitara incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
 	\lstinputlisting[firstline=5, lastline=62]{./src/ArticulationPoints.java}
 	
 	\subsection{Puentes}
-	Halla los puentes de un grafo.  Un puente es una arista del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un puente es una arista que si se quitara incrementaría el número de componentes conexas. El tiempo de ejecución del algoritmo es \( O(n + m) \).
+	Halla los puentes de un grafo.  Un puente es una arista del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un puente es una arista que si se quitara incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
 	\lstinputlisting[firstline=3, lastline=72]{./src/GraphBridges.java}
 	
 	\subsection{Algoritmo de Dijkstra}
-	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Su tiempo de ejecución es \( O(m + n\log n) \)
+	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Su complejidad es \( O(m + n\log n) \)
 	\lstinputlisting[firstline=5, lastline=76]{./src/Dijkstra.java}
 	
 	\subsection{Algoritmo de Floyd-Warshall}
 	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia.
 
-\section{El problema de la mochila (Knapsack)}
-Se tiene una mochila con capacidad \( W \), y \( n \) items con un peso \( w_i \) y un valor \( v_i \) cada uno. Se quiere hallar el conjunto de items tal que la suma de sus pesos no exceda \( W \), y que la suma de sus valores sea lo más grande posible. Su tiempo de ejecución es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
-\lstinputlisting[firstline=4, lastline=44]{./src/Knapsack.java}
-
 \section{KMP}
-Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}. Su tiempo de ejecución es de \( O(m+n) \) donde \( m \) es la longitud de \emph{text} y \( n \) es la longitud de \emph{pattern}. Retorna la posición donde inicia la primera ocurrencia de \emph{text} dentro de \emph{pattern}, o -1 si no existe.
+Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}. Su complejidad es de \( O(m+n) \) donde \( m \) es la longitud de \emph{text} y \( n \) es la longitud de \emph{pattern}. Retorna la posición donde inicia la primera ocurrencia de \emph{text} dentro de \emph{pattern}, o -1 si no existe.
 \lstinputlisting[firstline=4, lastline=51]{./src/KMP.java}
 
 \section{Union-Find}
 Estructura de datos que soporta las siguientes operaciones eficientemente:
 \begin{itemize}
-\item Unir dos elementos \( p, q \), es decir, indicar que pertenecen al mismo conjunto
+\item Unir dos elementos \( p, q \)
 \item Determinar si dos elementos \( p, q \) pertenecen al mismo conjunto o no
 \end{itemize}
 \lstinputlisting[firstline=2, lastline=66]{./src/UnionFind.java}
 
 \section{Programación dinámica}
-	\subsection{Paths in a grid}	
-	\subsection{Longest Increasing Subsequence}
-		\lstinputlisting[firstline=5, lastline=46]{./src/LIS.java}
 	\subsection{Longest Common Subsequence}
+	\subsection{Longest Increasing Subsequence}
+		Halla la longitud de la subsecuencia creciente más larga que hay en un vector. También halla los elementos que pertenecen a dicha subsecuencia, por si llega a ser necesario. Su complejidad es \( O(n^2) \).
+		\lstinputlisting[firstline=5, lastline=46]{./src/LIS.java}	
 	\subsection{Coin Change Problem}
-	\subsection{Edit Distance}	
+	\subsection{Edit Distance}
+	\subsection{El problema de la mochila (Knapsack)}
+	Se tiene una mochila con capacidad \( W \), y \( n \) items con un peso \( w_i \) y un valor \( v_i \) cada uno. Se quiere hallar el conjunto de items tal que la suma de sus pesos no exceda \( W \), y que la suma de sus valores sea lo más grande posible. Su complejidad es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
+	\lstinputlisting[firstline=4, lastline=44]{./src/Knapsack.java}
 
 \section{Teoría de números}
 	\subsection{Algoritmo de Euclides}
@@ -108,7 +107,7 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\lstinputlisting[firstline=5, lastline=28]{./src/CheckPrime.java}
 
 	\subsection{Criba  de Eratóstenes}
-	Algoritmo para hallar los números primos menores o iguales a \( n \). Su tiempo de ejecución es \( O(n \log \log n) \).
+	Algoritmo para hallar los números primos menores o iguales a \( n \). Su complejidad es \( O(n \log \log n) \).
 	\lstinputlisting[firstline=6, lastline=25]{./src/Sieve.java}
 	
 	\subsection{Factorización prima de un número}
@@ -117,7 +116,7 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 		
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas}
-	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su tiempo de ejecución es de \( O(n\log n) \).	
+	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su complejidad es \( O(n\log n) \).	
 	\lstinputlisting[firstline=7, lastline=15]{./src/Sorting.java}
 	
 	\subsection{Imprimir números decimales redondeados}
@@ -128,6 +127,6 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\emph{Scanner} es sencillo de utilizar pero es lento. Se recomienda utilizar siempre \emph{BufferedReader} para leer entradas.
 	
 	En algunas ocasiones también se necesitará un modo más rápido que \emph{System.out.println()} para imprimr. \emph{BufferedWriter} es más rápido, nunca está de más usarlo.
-	\lstinputlisting[firstline=9, lastline=23]{./src/ReaderWriter.java}
+	\lstinputlisting[firstline=9, lastline=29]{./src/ReaderWriter.java}
 \end{multicols}	
 \end{document}
