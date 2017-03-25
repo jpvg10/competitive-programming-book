@@ -85,10 +85,12 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 \lstinputlisting[firstline=2, lastline=66]{./src/UnionFind.java}
 
 \section{Programación dinámica}
-	\subsection{Longest Common Subsequence}
 	\subsection{Longest Increasing Subsequence}
-		Halla la longitud de la subsecuencia creciente más larga que hay en un vector. También halla los elementos que pertenecen a dicha subsecuencia, por si llega a ser necesario. Su complejidad es \( O(n^2) \).
-		\lstinputlisting[firstline=5, lastline=46]{./src/LIS.java}	
+		Halla la longitud de la subsecuencia creciente más larga que hay en un vector (o String). También halla los elementos que pertenecen a dicha subsecuencia, por si llega a ser necesario. Su complejidad es \( O(n^2) \).
+		\lstinputlisting[firstline=5, lastline=46]{./src/LIS.java}
+	\subsection{Longest Common Subsequence}
+		Halla la longitud de la subsecuencia común más larga entre dos Strings (o vectores). También halla los elementos que pertenecen a dicha subsecuencia, por si llega a ser necesario. Su complejidad es \( O(mn) \), donde \( m \) y \( n \) son las longitudes de los Strings.
+		\lstinputlisting[firstline=4, lastline=41]{./src/LCS.java}
 	\subsection{Coin Change Problem}
 	\subsection{Edit Distance}
 	\subsection{El problema de la mochila (Knapsack)}
