@@ -74,13 +74,13 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia, y puede tener aristas con peso negativo. Sin embargo, no puede tener ciclos de peso negativo. En caso de que exista un ciclo negativo, el algoritmo lo detectará. Si todas las artistas son no-negativas, se puede omitir la comprobación del ciclo negativo.
 	La matriz de adyacencia debe armarse así:
 	\[
-		\text{grafo}[i, j] = \left \{ 
+		\text{grafo}(i, j) = \left \{ 
 			\begin{array}{lcc}
-             	0 & si & i = j
-             	\\ c_{i,j} & si & \text{existe una arista de } i \text{ a } j \text{ con costo } c_{i,j}
-             	\\ \infty & si & i \neq j \text{ y no existe arista de } i \text{ a } j 
-             \end{array}
-   		\right.
+				0 & si & i = j
+				\\ c_{i,j} & si & \text{existe una arista de } i \text{ a } j \text{ con costo } c_{i,j}
+				\\ \infty & si & i \neq j \text{ y no existe arista de } i \text{ a } j 
+			\end{array}
+		\right.
 	\]
 	La complejidad del alrgoritmo es \( O(n^3) \).
 	\lstinputlisting[firstline=4, lastline=48]{./src/FloydWarshall.java}
@@ -126,8 +126,21 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\lstinputlisting[firstline=6, lastline=25]{./src/Sieve.java}
 	
 	\subsection{Factorización prima de un número}
-	Retorna un HashMap donde la \emph{clave} es el factor primo y el \emph{valor} su multiplicidad. Se puede modificar fácilmente para retornar una lista de todos los factores, o retornar la cantidad de factores. Si tiene que factorizar muchos números, considere hacer la Criba una sola vez por fuera del método.
-	\lstinputlisting[firstline=27, lastline=49]{./src/Sieve.java}
+	Retorna un HashMap donde la \emph{clave} es el factor primo y el \emph{valor} su multiplicidad. Se puede modificar fácilmente para retornar una lista de todos los factores, o retornar la cantidad de factores. 
+	
+	Se debe tener la lista de los números primos menores o iguales a \( \sqrt{n} \) de antemano. Verifique en la especificación de la entrada del problema cuál es el máximo número \( x \) que tendrá que factorizar, y haga una única Criba hasta \( \sqrt{x} \).
+	\lstinputlisting[firstline=27, lastline=48]{./src/Sieve.java}
+	
+	\subsection{Fórmulas de divisores}
+	Es posible calcular la cantidad de divisores de un número \( n \) y la suma de ellos, partiendo de la factorización prima de \( n \):
+	\[ n = \prod p_{i}^{a_{i}} = p_{1}^{a_{1}} \cdot p_{2}^{a_{2}} \cdot p_{3}^{a_{3}} ... \]
+		\subsubsection{Cantidad de divisores}
+		\[ d(n) = \prod (a_{i} + 1) \]
+		
+		\subsubsection{Suma de divisores}
+		\[ 
+			\sigma (n) = \prod \frac{p_{i}^{a_{i} + 1} - 1}{p_{i} - 1}
+		\]
 		
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas}

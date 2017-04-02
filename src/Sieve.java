@@ -23,14 +23,13 @@ public class Sieve {
 		
 		return primes;
 	}
-	
-	//Usa el metodo sieve()
-	public static HashMap<Integer, Integer> factor(int n){
+		
+	public static HashMap<Integer, Integer> factor(int n, ArrayList<Integer> primes){
 		HashMap<Integer, Integer> primeFactors = new HashMap<Integer, Integer>();		
 		int s = (int) Math.ceil(Math.sqrt(n));
-		ArrayList<Integer> primes = sieve(s);
 		
 		for(int p: primes){
+			if(p > s) break;
 			while(n % p == 0){
 				n = n/p;
 				if(primeFactors.containsKey(p)){
