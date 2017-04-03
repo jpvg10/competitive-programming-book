@@ -123,16 +123,21 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 
 	\subsection{Criba  de Eratóstenes}
 	Algoritmo para hallar los números primos menores o iguales a \( n \). Su complejidad es \( O(n \log \log n) \).
-	\lstinputlisting[firstline=6, lastline=25]{./src/Sieve.java}
+	\lstinputlisting[firstline=6, lastline=25]{./src/Criba.java}
 	
 	\subsection{Factorización prima de un número}
-	Retorna un HashMap donde la \emph{clave} es el factor primo y el \emph{valor} su multiplicidad. Se puede modificar fácilmente para retornar una lista de todos los factores, o retornar la cantidad de factores. 
+	Se busca expresar un número \( n \) como una multiplicación de factores primos, de la forma:
+	\[ n = \prod p_{i}^{a_{i}} = p_{1}^{a_{1}} \cdot p_{2}^{a_{2}} \cdot p_{3}^{a_{3}} ...  p_{k}^{a_{k}} \]
 	
-	Se debe tener la lista de los números primos menores o iguales a \( \sqrt{n} \) de antemano. Verifique en la especificación de la entrada del problema cuál es el máximo número \( x \) que tendrá que factorizar, y haga una única Criba hasta \( \sqrt{x} \).
-	\lstinputlisting[firstline=27, lastline=48]{./src/Sieve.java}
+	Previamente se debe hacer una Criba de Eratóstenes modificada. Verifique en la especificación de la entrada del problema cuál es el máximo número \( x \) que tendrá que factorizar, y haga la Criba hasta \( \sqrt{x} \).
+	
+	El método retorna un HashMap donde la \emph{clave} es el factor primo \( p_{i} \) y el \emph{valor} su multiplicidad \( a_{i} \). Se puede modificar fácilmente para retornar una lista de todos los factores, o retornar la cantidad de factores.
+	
+	Con algunas modificaciones, puede funcionar más o menos hasta \( 10^{12} \).
+	\lstinputlisting[firstline=7, lastline=72]{./src/Factorizar.java}
 	
 	\subsection{Fórmulas}
-	Es posible calcular la cantidad de divisores de un número \( n \) y la suma de ellos, partiendo de la factorización prima de \( n \):
+	Es posible calcular algunas cosas partiendo de la factorización prima de \( n \):
 	\[ n = \prod p_{i}^{a_{i}} = p_{1}^{a_{1}} \cdot p_{2}^{a_{2}} \cdot p_{3}^{a_{3}} ...  p_{k}^{a_{k}} \]
 		\subsubsection{Cantidad de divisores}
 		\[ d(n) = \prod (a_{i} + 1) \]
@@ -145,10 +150,8 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 		\subsubsection{Función $\varphi$ de Euler}
 		Dos números son relativamente primos (o coprimos) si no tienen divisores en común (es decir, si su MCD es 1). \( \varphi (n) \) se define como la cantidad de enteros positivos menores a \( n \) y coprimos a \( n \). 
 		\[ 
-			\varphi (n) = \prod (p_{i}^{a_{i}} - p_{i}^{a_{i}-1})
-		\]
-		
-		
+			\varphi (n) = \prod (p_{i} - 1) p_{i}^{a_{i}-1}
+		\]		
 		
 \section{Complete search}
 	\subsection{Generar subconjuntos}
