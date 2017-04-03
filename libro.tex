@@ -142,10 +142,28 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 			\sigma (n) = \prod \frac{p_{i}^{a_{i} + 1} - 1}{p_{i} - 1}
 		\]
 		
+\section{Complete search}
+	\subsection{Generar subconjuntos}
+	Se busca generar todos los subconjuntos de un conjunto de \( n \) elementos. Cada subconjunto puede representarse como un número de \( n \) bits. El elemento \( k \) pertenece al subconjunto si el bit \( k \) de dicho número está en 1.
+	\lstinputlisting[firstline=5, lastline=18]{./src/Subsets.java}
+	
+	\subsection{Generar permutaciones}
+	Se busca generar todas las permutaciones de un conjunto de \( n \) elementos.
+	\lstinputlisting[firstline=5, lastline=37]{./src/Permutations.java}
+	
+	\subsection{Generar combinaciones}
+	Se busca generar todos los subconjuntos de \( k \) elementos de un conjunto de \( n \) elementos.
+	\lstinputlisting[firstline=5, lastline=34]{./src/Combinations.java}
+		
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas}
 	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su complejidad es \( O(n\log n) \).	
 	\lstinputlisting[firstline=7, lastline=15]{./src/Sorting.java}
+	
+	\subsection{Cola de Prioridad}
+	
+	\subsection{Interfaz Comparable}
+	En ocasiones se puede necesitar ordenar un vector o lista de un tipo de datos definido por el usuario (clase), o utilizar una cola de prioridad. Para hacer esto, la clase debe implementar la interfaz Comparable de Java.
 	
 	\subsection{Imprimir números decimales redondeados}
 	Generalmente basta con esta función de Java para redondear correctamente números decimales.	

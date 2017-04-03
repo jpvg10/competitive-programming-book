@@ -25,7 +25,7 @@ public class ArticulationPoints {
 		parent = new int[n];
 		for(int i=0; i<n; i++){
 			parent[i] = -1;
-		}5
+		}
 
 		for(int u=0; u<n; u++){
 			if(!seen[u]){
