@@ -41,6 +41,14 @@ Estructura de datos que actúa como ``bolsa'' donde se almacenan elementos, pero
 En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O(\log n) \). Sin embargo, en el TreeSet los elementos quedan ordenados.
 \lstinputlisting[firstline=5, lastline=19]{./src/Sets.java}
 
+\section{Union-Find}
+Estructura de datos que soporta las siguientes operaciones eficientemente:
+\begin{itemize}
+\item Unir dos elementos \( p, q \)
+\item Determinar si dos elementos \( p, q \) pertenecen al mismo conjunto o no
+\end{itemize}
+\lstinputlisting[firstline=2, lastline=66]{./src/UnionFind.java}
+
 \section{Grafos}
 	\subsection{BFS y DFS}
 	Recorren un grafo a partir de un nodo origen y visitan todos los nodos alcanzables desde éste. Ambos algoritmos tienen una complejidad de \( O(n + m) \) donde \( n \) es el número de nodos y \( m \) es el número de aristas del grafo. El siguiente ejemplo está con DFS pero funciona igual con BFS.	
@@ -50,21 +58,23 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 	Modificación de BFS que calcula el camino más corto desde un nodo origen \( s \) a todos los demás. Sólo funciona cuando el peso de todas las aristas es 1. Su complejidad es la misma de BFS: \( O(n + m) \).
 	\lstinputlisting[firstline=7, lastline=53]{./src/ShortestHop.java}
 	
-	\subsection{Ordenamiento Topológico}
+	\subsection{Ordenamiento topológico}
 	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas \( (u,v) \), \(u\) aparece en el ordenamiento antes que \(v\). Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. En realidad es una modificación de DFS y complejidad es la misma: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
 	\lstinputlisting[firstline=6, lastline=56]{./src/TopoSort.java}
 	
-	\subsection{Componentes Fuertemente Conexas (Algoritmo de Tarjan)}
+	\subsection{Componentes fuertemente conexas (Algoritmo de Tarjan)}
 	Calcula la componente fuertemente conexa a la que pertenece cada nodo de un grafo dirigido. Si dos nodos \( u, v \) están en la misma componente, significa que existe un camino de \( u \) a \( v \) y uno de \( v \) a \( u \). Su complejidad es \( O(n + m) \).
 	\lstinputlisting[firstline=6, lastline=68]{./src/Tarjan.java}
 	
-	\subsection{Puntos de Articulación}
+	\subsection{Puntos de articulación}
 	Halla los puntos de articulación de un grafo. Un punto de articulación es un nodo del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un punto de articulación es un nodo que si se quitara incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
 	\lstinputlisting[firstline=5, lastline=62]{./src/ArticulationPoints.java}
 	
 	\subsection{Puentes}
 	Halla los puentes de un grafo.  Un puente es una arista del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un puente es una arista que si se quitara incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
 	\lstinputlisting[firstline=3, lastline=72]{./src/GraphBridges.java}
+	
+	\subsection{Minimum Spanning Tree (Algoritmo de Kruskal)}
 	
 	\subsection{Algoritmo de Dijkstra}
 	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Su complejidad es \( O(m + n\log n) \)
@@ -88,14 +98,6 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 \section{KMP}
 Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}. Su complejidad es de \( O(m+n) \) donde \( m \) es la longitud de \emph{text} y \( n \) es la longitud de \emph{pattern}. Retorna la posición donde inicia la primera ocurrencia de \emph{text} dentro de \emph{pattern}, o -1 si no existe.
 \lstinputlisting[firstline=4, lastline=51]{./src/KMP.java}
-
-\section{Union-Find}
-Estructura de datos que soporta las siguientes operaciones eficientemente:
-\begin{itemize}
-\item Unir dos elementos \( p, q \)
-\item Determinar si dos elementos \( p, q \) pertenecen al mismo conjunto o no
-\end{itemize}
-\lstinputlisting[firstline=2, lastline=66]{./src/UnionFind.java}
 
 \section{Programación dinámica}
 	\subsection{Longest Increasing Subsequence}
@@ -137,8 +139,11 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\lstinputlisting[firstline=7, lastline=72]{./src/Factorizar.java}
 	
 	\subsection{Fórmulas}
-	Es posible calcular algunas cosas partiendo de la factorización prima de \( n \):
+	Para \( n \geq 2 \) es posible calcular algunas cosas partiendo de la factorización prima de \( n \):
 	\[ n = \prod p_{i}^{a_{i}} = p_{1}^{a_{1}} \cdot p_{2}^{a_{2}} \cdot p_{3}^{a_{3}} ...  p_{k}^{a_{k}} \]
+	\( n = 1 \) es un caso especial:
+	\[ d(1) = \sigma (1) = \varphi (1) = 1 \]
+
 		\subsubsection{Cantidad de divisores}
 		\[ d(n) = \prod (a_{i} + 1) \]
 		
@@ -146,6 +151,11 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 		\[ 
 			\sigma (n) = \prod \frac{p_{i}^{a_{i} + 1} - 1}{p_{i} - 1}
 		\]
+		Esta función toma todos los divisores. Por ejemplo, los divisores de 12 son \( \{1, 2, 3, 4, 6, 12\} \). Por ende, \( \sigma(12) = 1+2+3+4+6+12 = 28 \). Si se quiere la suma de los divisores propios (es decir, los divisores excluyendo a \( n \) ), basta con hallar:
+		\[ 
+			s (n) = \sigma (n) - n
+		\]		
+		En el ejemplo anterior, \( s (12) = 28-12 = 16 \).
 		
 		\subsubsection{Función $\varphi$ de Euler}
 		Dos números son relativamente primos (o coprimos) si no tienen divisores en común (es decir, si su MCD es 1). \( \varphi (n) \) se define como la cantidad de enteros positivos menores a \( n \) y coprimos a \( n \). 
@@ -153,18 +163,11 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 			\varphi (n) = \prod (p_{i} - 1) p_{i}^{a_{i}-1}
 		\]		
 		
-\section{Complete search}
-	\subsection{Generar subconjuntos}
-	Se busca generar todos los subconjuntos de un conjunto de \( n \) elementos. Cada subconjunto puede representarse como un número de \( n \) bits. El elemento \( k \) pertenece al subconjunto si el bit \( k \) de dicho número está en 1.
-	\lstinputlisting[firstline=5, lastline=18]{./src/Subsets.java}
-	
-	\subsection{Generar permutaciones}
-	Se busca generar todas las permutaciones de un conjunto de \( n \) elementos.
-	\lstinputlisting[firstline=5, lastline=37]{./src/Permutations.java}
-	
-	\subsection{Generar combinaciones}
-	Se busca generar todos los subconjuntos de \( k \) elementos de un conjunto de \( n \) elementos.
-	\lstinputlisting[firstline=5, lastline=34]{./src/Combinations.java}
+\section{Subconjuntos}
+Se busca generar todos los subconjuntos de un conjunto de \( n \) elementos. Un conjunto de \( n \) elementos tiene \( 2^{n} \) posibles subconjutos. Cada subconjunto puede representarse como un número \( b \) de \( n \) bits. El elemento \( k \) pertenece al subconjunto si el bit \( k \) de \( b \) está en 1.
+
+Para conjuntos de más de 32 elementos ya no es viable usar esta técnica.
+\lstinputlisting[firstline=5, lastline=18]{./src/Subsets.java}
 		
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas}
