@@ -75,9 +75,11 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\lstinputlisting[firstline=3, lastline=72]{./src/GraphBridges.java}
 	
 	\subsection{Minimum Spanning Tree (Algoritmo de Kruskal)}
+	Halla el árbol de cubrimiento mínimo de un grafo no-dirigido y conexo. Utiliza la estructura de datos Union-Find discutida anteriormente. El grafo debe ser representado como una lista de objetos tipo Arista. Tiene una complejidad de \( O( m \log n) \).
+	\lstinputlisting[firstline=4, lastline=45]{./src/Kruskal.java}
 	
 	\subsection{Algoritmo de Dijkstra}
-	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Su complejidad es \( O(m + n\log n) \)
+	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Su complejidad es \( O(m + n \log n) \)
 	\lstinputlisting[firstline=5, lastline=76]{./src/Dijkstra.java}
 	
 	\subsection{Algoritmo de Floyd-Warshall}
