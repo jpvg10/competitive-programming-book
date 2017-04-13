@@ -75,8 +75,10 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\lstinputlisting[firstline=3, lastline=72]{./src/GraphBridges.java}
 	
 	\subsection{Minimum Spanning Tree (Algoritmo de Kruskal)}
-	Halla el árbol de cubrimiento mínimo de un grafo no-dirigido y conexo. Utiliza la estructura de datos Union-Find discutida anteriormente. El grafo debe ser representado como una lista de objetos tipo Arista. Tiene una complejidad de \( O( m \log n) \).
-	\lstinputlisting[firstline=4, lastline=45]{./src/Kruskal.java}
+	Halla el árbol de cubrimiento mínimo de un grafo no-dirigido y conexo. Si no está garantizado de antemano que el grafo sea conexo, hay que verificarlo antes de correr este algoritmo. 
+		
+	Utiliza la estructura de datos Union-Find discutida anteriormente. El grafo debe ser representado como una lista de objetos tipo Arista. Tiene una complejidad de \( O( m \log n) \).	
+	\lstinputlisting[firstline=4, lastline=43]{./src/Kruskal.java}
 	
 	\subsection{Algoritmo de Dijkstra}
 	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Su complejidad es \( O(m + n \log n) \)
@@ -190,5 +192,6 @@ Para conjuntos de más de 32 elementos ya no es viable usar esta técnica.
 	
 	En algunas ocasiones también se necesitará un modo más rápido que \emph{System.out.println()} para imprimr. \emph{BufferedWriter} es más rápido, nunca está de más usarlo.
 	\lstinputlisting[firstline=9, lastline=29]{./src/ReaderWriter.java}
+
 \end{multicols}	
 \end{document}
