@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-//Se necesita implementar la clase UnionFind
+//Se necesita implementar tambien la clase UnionFind
 
 class Arista implements Comparable<Arista>{
 	public int u, v, costo;
@@ -17,15 +17,13 @@ class Arista implements Comparable<Arista>{
 
 public class Kruskal {
 
-	static ArrayList<Arista> aristas;
-
 	public static void main(String[] args) {
 		int n = 10; //Cantidad de nodos del grafo
-		aristas = new ArrayList<Arista>();
-		int mst = kruskal(n);
+		ArrayList<Arista> aristas = new ArrayList<Arista>();
+		int mst = kruskal(aristas n);
 	}
 
-	public static int kruskal(int n){
+	public static int kruskal(ArrayList<Arista> aristas, int n){
 		Collections.sort(aristas);
 
 		UnionFind uf = new UnionFind(n);
