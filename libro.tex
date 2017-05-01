@@ -82,7 +82,7 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	
 	\subsection{Algoritmo de Dijkstra}
 	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Su complejidad es \( O(m + n \log n) \)
-	\lstinputlisting[firstline=5, lastline=76]{./src/Dijkstra.java}
+	\lstinputlisting[firstline=6, lastline=77]{./src/Dijkstra.java}
 	
 	\subsection{Algoritmo de Floyd-Warshall}
 	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia, y puede tener aristas con peso negativo. Sin embargo, no puede tener ciclos de peso negativo. En caso de que exista un ciclo negativo, el algoritmo lo detectará. Si todas las artistas son no-negativas, se puede omitir la comprobación del ciclo negativo.
