@@ -44,8 +44,8 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 \section{Union-Find}
 Estructura de datos que soporta las siguientes operaciones eficientemente:
 \begin{itemize}
-\item Unir dos elementos \( p, q \)
-\item Determinar si dos elementos \( p, q \) pertenecen al mismo conjunto o no
+\item Unir los conjuntos de los elementos \( p, q \)
+\item Determinar si los elementos \( p, q \) pertenecen al mismo conjunto o no
 \end{itemize}
 \lstinputlisting[firstline=2, lastline=66]{./src/UnionFind.java}
 
@@ -81,11 +81,12 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\lstinputlisting[firstline=4, lastline=43]{./src/Kruskal.java}
 	
 	\subsection{Algoritmo de Dijkstra}
-	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Su complejidad es \( O(m + n \log n) \)
-	\lstinputlisting[firstline=6, lastline=77]{./src/Dijkstra.java}
+	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Se debe armar tanto la lista como la matriz de adyacencia. Su complejidad es \( O(m + n \log n) \).
+	\lstinputlisting[firstline=6, lastline=80]{./src/Dijkstra.java}
 	
 	\subsection{Algoritmo de Floyd-Warshall}
 	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia, y puede tener aristas con peso negativo. Sin embargo, no puede tener ciclos de peso negativo. En caso de que exista un ciclo negativo, el algoritmo lo detectará. Si todas las artistas son no-negativas, se puede omitir la comprobación del ciclo negativo.
+	
 	La matriz de adyacencia debe armarse así:
 	\[
 		\text{grafo}(i, j) = \left \{ 
