@@ -9,58 +9,58 @@ class Nodo implements Comparable<Nodo>{
 	public Nodo(int id, int distancia){
 		this.id = id;
 		this.distancia = distancia;
-	}
+	}	
 	public int compareTo(Nodo o) {
 		return this.distancia-o.distancia;
 	}
 }
 
 public class Dijkstra {
-
+	
 	static ArrayList<Integer> g[];
 	static int[][] p;
-	static Nodo[] nodos;
+	static int[] distancias;
 	static int[] padre;
 	static boolean[] visitado;
-	static PriorityQueue<Nodo> proximo;
-
+	static PriorityQueue<Nodo> proximo;	
+		
 	public static void main(String[] args) throws IOException {
 		int n = 8;
-
+		
 		g = new ArrayList[n];
 		p = new int[n][n];
-		nodos = new Nodo[n];
+		distancias = new int[n];
 		padre = new int[n];
 		visitado = new boolean[n];
 		proximo = new PriorityQueue<Nodo>();
-
+			
 		for (int i=0; i<n; i++) {
 			g[i] = new ArrayList<Integer>();
-			nodos[i] = new Nodo(i, Integer.MAX_VALUE);
+			distancias[i] = Integer.MAX_VALUE;	
 		}
-
+		
 		int src = 0;
 		dijkstra(src);
-
-		//El vector 'nodos' contiene la menor distancia de 'src' a todos los nodos
+		
+		//El vector 'distancias' contiene la menor distancia de 'src' a todos los nodos
 		//Por ejemplo, la menor distancia de 'src' a 4 es:
-		int menorDist = nodos[4].distancia;
-
-		//Para hallar el camino como tal entre 'src' y un nodo
+		int menorDist = distancias[4];
+		
+		//Para hallar el camino como tal entre 'src' y el nodo 4 es:
 		LinkedList<Integer> camino = new LinkedList<Integer>();
-		int r = 4;
+		int r = 4;		
 		camino.add(r);
-		while(r != src){
+		while(r != src){			
 			r = padre[r];
 			camino.addFirst(r);
 		}
 	}
-
+	
 	public static void dijkstra(int src){
-		nodos[src].distancia = 0;
-		proximo.add(nodos[src]);
+		distancias[src] = 0;
+		proximo.add(new Nodo(src, 0));
 		padre[src] = src;
-
+				
 		while(!proximo.isEmpty()) {
 			Nodo u = proximo.poll();
 			if(!visitado[u.id]){
@@ -68,13 +68,13 @@ public class Dijkstra {
 				int len = g[u.id].size();
 				for (int i=0; i<len; i++) {
 					int v = g[u.id].get(i);
-					if(u.distancia + p[u.id][v] < nodos[v].distancia){
-						nodos[v].distancia = u.distancia + p[u.id][v];
-						proximo.add(nodos[v]);
+					if(u.distancia + p[u.id][v] < distancias[v]){
+						distancias[v] = u.distancia + p[u.id][v];
+						proximo.add(new Nodo(v, distancias[v]));
 						padre[v] = u.id;
 					}
 				}
-			}
+			}			
 		}
 	}
 }
