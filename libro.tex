@@ -44,8 +44,8 @@ En HashSet .add() y .contains() son \( O(1) \), mientras que en TreeSet son \( O
 \section{Union-Find}
 Estructura de datos que soporta las siguientes operaciones eficientemente:
 \begin{itemize}
-\item Unir los conjuntos de los elementos \( p, q \)
-\item Determinar si los elementos \( p, q \) pertenecen al mismo conjunto o no
+	\item Unir los conjuntos de los elementos \( p, q \)
+	\item Determinar si los elementos \( p, q \) pertenecen al mismo conjunto o no
 \end{itemize}
 \lstinputlisting[firstline=2, lastline=66]{./src/UnionFind.java}
 
@@ -59,7 +59,9 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\lstinputlisting[firstline=7, lastline=53]{./src/ShortestHop.java}
 	
 	\subsection{Ordenamiento topológico}
-	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas \( (u,v) \), \(u\) aparece en el ordenamiento antes que \(v\). Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. En realidad es una modificación de DFS y complejidad es la misma: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
+	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas \( (u,v) \), \(u\) aparece en el ordenamiento antes que \(v\). Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. 
+	
+	El algoritmo para hallar dicho ordenamiento es una modificación de DFS y complejidad es la misma: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
 	\lstinputlisting[firstline=6, lastline=56]{./src/TopoSort.java}
 	
 	\subsection{Componentes fuertemente conexas (Algoritmo de Tarjan)}
@@ -67,11 +69,11 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\lstinputlisting[firstline=6, lastline=68]{./src/Tarjan.java}
 	
 	\subsection{Puntos de articulación}
-	Halla los puntos de articulación de un grafo. Un punto de articulación es un nodo del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un punto de articulación es un nodo que si se quitara incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
+	Halla los puntos de articulación de un grafo. Un punto de articulación es un nodo del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un punto de articulación es un nodo que, si se quitara, incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
 	\lstinputlisting[firstline=5, lastline=62]{./src/ArticulationPoints.java}
 	
 	\subsection{Puentes}
-	Halla los puentes de un grafo.  Un puente es una arista del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un puente es una arista que si se quitara incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
+	Halla los puentes de un grafo.  Un puente es una arista del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un puente es una arista que, si se quitara, incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
 	\lstinputlisting[firstline=3, lastline=72]{./src/GraphBridges.java}
 	
 	\subsection{Minimum Spanning Tree (Algoritmo de Kruskal)}
@@ -81,7 +83,7 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\lstinputlisting[firstline=4, lastline=43]{./src/Kruskal.java}
 	
 	\subsection{Algoritmo de Dijkstra}
-	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Se debe armar tanto la lista como la matriz de adyacencia. Su complejidad es \( O(m + n \log n) \).
+	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Se debe representar el grafo tanto en lista como en matriz de adyacencia. Su complejidad es \( O(m + n \log n) \).
 	\lstinputlisting[firstline=6, lastline=80]{./src/Dijkstra.java}
 	
 	\subsection{Algoritmo de Floyd-Warshall}
@@ -140,7 +142,7 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 	
 	El método retorna un HashMap donde la \emph{clave} es el factor primo \( p_{i} \) y el \emph{valor} su multiplicidad \( a_{i} \). Se puede modificar fácilmente para retornar una lista de todos los factores, o retornar la cantidad de factores.
 	
-	Con algunas modificaciones, puede funcionar más o menos hasta \( 10^{12} \).
+	Con algunas modificaciones, puede funcionar más o menos hasta \( n = 10^{12} \).
 	\lstinputlisting[firstline=7, lastline=72]{./src/Factorizar.java}
 	
 	\subsection{Fórmulas}
@@ -156,7 +158,7 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 		\[ 
 			\sigma (n) = \prod \frac{p_{i}^{a_{i} + 1} - 1}{p_{i} - 1}
 		\]
-		Esta función toma todos los divisores. Por ejemplo, los divisores de 12 son \( \{1, 2, 3, 4, 6, 12\} \). Por ende, \( \sigma(12) = 1+2+3+4+6+12 = 28 \). Si se quiere la suma de los divisores propios (es decir, los divisores excluyendo a \( n \) ), basta con hallar:
+		Esta función toma todos los divisores. Por ejemplo, los divisores de 12 son \( \{1, 2, 3, 4, 6, 12\} \). Por ende, \( \sigma(12) = 1+2+3+4+6+12 = 28 \). Si se quiere la suma de los divisores propios (es decir, los divisores excluyendo a \( n \)), basta con hallar:
 		\[ 
 			s (n) = \sigma (n) - n
 		\]		
@@ -175,14 +177,28 @@ Para conjuntos de más de 32 elementos ya no es viable usar esta técnica.
 \lstinputlisting[firstline=5, lastline=18]{./src/Subsets.java}
 		
 \section{Otros}
-	\subsection{Ordenamiento de Arrays y Listas}
-	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su complejidad es \( O(n\log n) \).	
+	\subsection{Ordenamiento de Arrays y Listas (ascendente y descendente)}
+	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su complejidad es \( O(n\log n) \).
 	\lstinputlisting[firstline=7, lastline=15]{./src/Sorting.java}
 	
 	\subsection{Cola de Prioridad}
+	Cola en la que la cabeza siempre es el menor elemento presente. Las operaciones add() y poll() son \( O(\log n ) \). La operación peek() es \( O(1) \).
+	
+	También se puede invertir, haciendo que la cabeza siempre sea el mayor elemento, pasando el parámetro Collections.reverseOrder().
+	\lstinputlisting[firstline=6, lastline=19]{./src/ColaDePrioridad.java}
 	
 	\subsection{Interfaz Comparable}
 	En ocasiones se puede necesitar ordenar un vector o lista de un tipo de datos definido por el usuario (clase), o utilizar una cola de prioridad. Para hacer esto, la clase debe implementar la interfaz Comparable de Java.
+
+	El método compareTo() debe retornar:
+	\begin{itemize}
+		\item Negativo si \emph{this} \( < \) \emph{obj}.
+		\item 0 si \emph{this} = \emph{obj}.
+		\item Positivo si \emph{this} \( > \) \emph{obj}.
+	\end{itemize}	
+	
+	Por ejemplo, se tiene una clase Persona con dos campos: nombre y edad. Se quiere ordenar una lista de objetos tipo Persona de menor a mayor edad.
+	\lstinputlisting[firstline=4, lastline=23]{./src/Persona.java}
 	
 	\subsection{Imprimir números decimales redondeados}
 	Generalmente basta con esta función de Java para redondear correctamente números decimales.	
