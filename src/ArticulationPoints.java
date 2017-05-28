@@ -1,29 +1,25 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ArticulationPoints {
 
 	static ArrayList<Integer> g[];
-	static boolean seen[];
-	static int disc[];
-	static int low[];
+	static boolean[] seen, ap;
+	static int[] disc, low, parent;
 	static int time;
-	static int parent[];
-	static boolean ap[];
 
 	public static void main(String[] args) {
 		int n = 10;
 
+		g = new ArrayList[n];
 		seen = new boolean[n];
+		ap = new boolean[n];
 		disc = new int[n];
 		low = new int[n];
-		time = 0;		
-		ap = new boolean[n];
-		g = new ArrayList[n];
+		parent = new int[n];
+		time = 0;
 		for(int i = 0; i < n; i++){
 			g[i] = new ArrayList<Integer>();
-		}
-		parent = new int[n];
-		for(int i=0; i<n; i++){
 			parent[i] = -1;
 		}
 

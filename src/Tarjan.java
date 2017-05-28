@@ -1,17 +1,13 @@
-import java.util.ArrayList;
+imporimport java.util.ArrayList;
 import java.util.Stack;
 
 public class Tarjan {
 
 	static ArrayList<Integer> g[];
-	static boolean seen[];
-	static boolean stackMember[];
-	static int disc[];
-	static int low[];
-	static int scc[];
+	static boolean[] seen, stackMember;
+	static int[] disc, low, scc;
 	static Stack<Integer> st;
-	static int time;
-	static int component;
+	static int time, component;
 
 	public static void main(String[] args) {
 		int n = 10;

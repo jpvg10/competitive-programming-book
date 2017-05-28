@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -26,16 +27,14 @@ public class ShortestHop {
 	public static void shortestHop(int u){
 		int n = g.length;
 
-		//Distancia "infinita" hacia todos los nodos		
-		for(int i=0; i<n; i++){
-			dist[i] = Integer.MAX_VALUE;
-		}
+		//Distancia "infinita" hacia todos los nodos
+		Arrays.fill(dist, Integer.MAX_VALUE);
 		//Distancia 0 hacia el nodo de origen
 		dist[u] = 0;
 
 		//BFS "modificado"
 		seen[u] = true;
-		Queue<Integer> q = new LinkedList<Integer>();		
+		Queue<Integer> q = new LinkedList<Integer>();
 		q.add(u);
 		while(!q.isEmpty()){
 			u = q.poll();

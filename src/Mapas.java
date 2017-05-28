@@ -1,7 +1,6 @@
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-//Contar el numero de veces que aparecen las palabras en un String
 public class Mapas {
 
 	public static void main(String args[]){

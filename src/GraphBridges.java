@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 class Bridge {
-	public int u;
-	public int v;
+	public int u, v;
 	public Bridge(int u, int v){
 		this.u = u;
 		this.v = v;
@@ -12,30 +11,24 @@ class Bridge {
 public class GraphBridges {
 
 	static ArrayList<Integer> g[];
-	static boolean seen[];
-	static int disc[];
-	static int low[];
+	static boolean[] seen;
+	static int[] disc, low, parent;
 	static int time;
-	static int parent[];
 	static ArrayList<Bridge> bridgeEdges;
 
 	public static void main(String[] args) {
 		int n = 10;
 
+		g = new ArrayList[n];
 		seen = new boolean[n];
 		disc = new int[n];
 		low = new int[n];
-		time = 0;
 		parent = new int[n];
+		time = 0;
 		bridgeEdges = new ArrayList<Bridge>();
-
-		g = new ArrayList[n];
 		for(int i = 0; i < n; i++){
 			g[i] = new ArrayList<Integer>();
-		}
-
-		for(int i=0; i<n;i++){
-			parent[i]=-1;
+			parent[i] = -1;
 		}
 
 		for(int u=0; u<n; u++){

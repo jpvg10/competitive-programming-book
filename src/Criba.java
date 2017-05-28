@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Sieve {
-	
+public class Criba {
+
 	public static ArrayList<Integer> criba(int n){
 		boolean marked[] = new boolean[n+1];
 		marked[0] = true;
 		marked[1] = true;
 		ArrayList<Integer> primos = new ArrayList<Integer>();
-		
+
 		for(int i=2; i<=n; i++){
 			if(!marked[i]){
 				primos.add(i);
@@ -20,8 +20,8 @@ public class Sieve {
 				}
 			}
 		}
-		
+
 		return primos;
 	}
-	
+
 }

@@ -12,11 +12,10 @@ public class TopoSort {
 
 		seen = new int[n];
 		topoSort = new LinkedList<Integer>();
-
 		g = new ArrayList[n];
 		for(int i = 0; i < n; i++){
 			g[i] = new ArrayList<Integer>();
-		}		
+		}
 
 		boolean sinCiclo = true;
 

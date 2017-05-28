@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class Grafos {
 
@@ -8,14 +9,23 @@ public class Grafos {
 	static boolean seen[];
 
 	public static void main(String[] args) {
-		int n = 10;
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
 
 		seen = new boolean[n];
 		g = new ArrayList[n];
 		for(int i = 0; i < n; i++){
 			g[i] = new ArrayList<Integer>();
 		}
-		
+
+		while(sc.hasNextInt()){
+			int u = sc.nextInt();
+			int v = sc.nextInt();
+			g[u].add(v);
+			// Si el grafo es no-dirigido, tambien se agrega arista de v a u
+			g[v].add(u);
+		}
+
 		//Visita solo los nodos que son alcanzables desde el nodo 's'
 		int s = 0;
 		dfs(s);

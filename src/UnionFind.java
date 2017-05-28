@@ -1,7 +1,6 @@
 
 class UnionFind{
-	private int parent[];
-	private int size[];
+	private int[] parent, size;
 	private int components;
 
 	// n = Numero de nodos
@@ -56,10 +55,10 @@ class Main {
 		uf.union(0, 2);
 		uf.union(1, 0);
 		uf.union(3, 4);
-		
+
 		//El numero de componentes es
 		int comp = uf.getComponents();
-		
+
 		//Dos nodos estan conectados?
 		boolean connected = uf.connected(0, 3);
 	}

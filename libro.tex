@@ -33,7 +33,9 @@
 Estructura de datos que guarda pares \emph{(clave, valor)}. El HashMap no pone las claves en ningún orden en particular. TreeMap ordena las claves de acuerdo a su orden natural. LinkedHashMap pone las claves en el orden en que se ingresen.
 
 Las operaciones .put(), .get() y .containsKey() son \( O(1) \) en HashMap y LinkedHashMap, y \( O(\log n) \) en TreeMap.
-\lstinputlisting[firstline=7, lastline=30]{./src/Mapas.java}
+
+Ejemplo: Contar cuántas veces aparece cada palabra en un String.
+\lstinputlisting[firstline=6, lastline=29]{./src/Mapas.java}
 
 \section{Sets}
 Estructura de datos que actúa como ``bolsa'' donde se almacenan elementos, pero no puede almacenar elementos duplicados.
@@ -47,34 +49,34 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	\item Unir los conjuntos de los elementos \( p, q \)
 	\item Determinar si los elementos \( p, q \) pertenecen al mismo conjunto o no
 \end{itemize}
-\lstinputlisting[firstline=2, lastline=66]{./src/UnionFind.java}
+\lstinputlisting[firstline=2, lastline=65]{./src/UnionFind.java}
 
 \section{Grafos}
 	\subsection{BFS y DFS}
 	Recorren un grafo a partir de un nodo origen y visitan todos los nodos alcanzables desde éste. Ambos algoritmos tienen una complejidad de \( O(n + m) \) donde \( n \) es el número de nodos y \( m \) es el número de aristas del grafo. El siguiente ejemplo está con DFS pero funciona igual con BFS.	
-	\lstinputlisting[firstline=7, lastline=65]{./src/Grafos.java}
+	\lstinputlisting[firstline=8, lastline=75]{./src/Grafos.java}
 
 	\subsection{Shortest Hop}
 	Modificación de BFS que calcula el camino más corto desde un nodo origen \( s \) a todos los demás. Sólo funciona cuando el peso de todas las aristas es 1. Su complejidad es la misma de BFS: \( O(n + m) \).
-	\lstinputlisting[firstline=7, lastline=53]{./src/ShortestHop.java}
+	\lstinputlisting[firstline=8, lastline=52]{./src/ShortestHop.java}
 	
 	\subsection{Ordenamiento topológico}
 	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas \( (u,v) \), \(u\) aparece en el ordenamiento antes que \(v\). Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. 
 	
 	El algoritmo para hallar dicho ordenamiento es una modificación de DFS y complejidad es la misma: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
-	\lstinputlisting[firstline=6, lastline=56]{./src/TopoSort.java}
+	\lstinputlisting[firstline=6, lastline=55]{./src/TopoSort.java}
 	
 	\subsection{Componentes fuertemente conexas (Algoritmo de Tarjan)}
 	Calcula la componente fuertemente conexa a la que pertenece cada nodo de un grafo dirigido. Si dos nodos \( u, v \) están en la misma componente, significa que existe un camino de \( u \) a \( v \) y uno de \( v \) a \( u \). Su complejidad es \( O(n + m) \).
-	\lstinputlisting[firstline=6, lastline=68]{./src/Tarjan.java}
+	\lstinputlisting[firstline=6, lastline=64]{./src/Tarjan.java}
 	
 	\subsection{Puntos de articulación}
 	Halla los puntos de articulación de un grafo. Un punto de articulación es un nodo del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un punto de articulación es un nodo que, si se quitara, incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
-	\lstinputlisting[firstline=5, lastline=62]{./src/ArticulationPoints.java}
+	\lstinputlisting[firstline=6, lastline=58]{./src/ArticulationPoints.java}
 	
 	\subsection{Puentes}
 	Halla los puentes de un grafo.  Un puente es una arista del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un puente es una arista que, si se quitara, incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
-	\lstinputlisting[firstline=3, lastline=72]{./src/GraphBridges.java}
+	\lstinputlisting[firstline=3, lastline=64]{./src/GraphBridges.java}
 	
 	\subsection{Minimum Spanning Tree (Algoritmo de Kruskal)}
 	Halla el árbol de cubrimiento mínimo de un grafo no-dirigido y conexo. Si no está garantizado de antemano que el grafo sea conexo, hay que verificarlo antes de correr este algoritmo. 
@@ -84,7 +86,7 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	
 	\subsection{Algoritmo de Dijkstra}
 	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Se debe representar el grafo tanto en lista como en matriz de adyacencia. Su complejidad es \( O(m + n \log n) \).
-	\lstinputlisting[firstline=6, lastline=80]{./src/Dijkstra.java}
+	\lstinputlisting[firstline=6, lastline=77]{./src/Dijkstra.java}
 	
 	\subsection{Algoritmo de Floyd-Warshall}
 	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia, y puede tener aristas con peso negativo. Sin embargo, no puede tener ciclos de peso negativo. En caso de que exista un ciclo negativo, el algoritmo lo detectará. Si todas las artistas son no-negativas, se puede omitir la comprobación del ciclo negativo.

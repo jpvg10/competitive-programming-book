@@ -14,7 +14,7 @@ public class ReaderWriter {
 		while((s = br.readLine()) != null){
 			String l[] = s.split(" ");
 		}
-		
+
 		//Ciclo con numero de casos
 		int t = Integer.parseInt(br.readLine());
 		for(int i=0; i<t; i++){
