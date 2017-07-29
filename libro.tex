@@ -170,13 +170,72 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 		Dos números son relativamente primos (o coprimos) si no tienen divisores en común (es decir, si su MCD es 1). \( \varphi (n) \) se define como la cantidad de enteros positivos menores a \( n \) y coprimos a \( n \). 
 		\[ 
 			\varphi (n) = \prod (p_{i} - 1) p_{i}^{a_{i}-1}
-		\]		
-		
-\section{Subconjuntos}
-Se busca generar todos los subconjuntos de un conjunto de \( n \) elementos. Un conjunto de \( n \) elementos tiene \( 2^{n} \) posibles subconjutos. Cada subconjunto puede representarse como un número \( b \) de \( n \) bits. El elemento \( k \) pertenece al subconjunto si el bit \( k \) de \( b \) está en 1.
+		\]
 
-Para conjuntos de más de 32 elementos ya no es viable usar esta técnica.
+\section{Combinatoria}
+\subsection{Permutaciones}
+Un conjunto de \( n \) elementos diferentes tiene \( n! \) permutaciones. El número máximo cuyo factorial cabe en un \emph{long} de 64 bits es \( n = 20 \).
+
+Si se requiere generarlas explícitamente, se puede hacer hasta \( n = 10 \).
+
+\subsection{Subconjuntos}
+Un conjunto de \( n \) elementos tiene \( 2^{n} \) posibles subconjutos. 
+
+Si se busca generarlos, cada subconjunto puede representarse como un número \( b \) de \( n \) bits. El elemento \( k \) pertenece al subconjunto si el bit \( k \) de \( b \) está en 1. No es viable hacerlo para \( n > 32 \).
 \lstinputlisting[firstline=5, lastline=18]{./src/Subsets.java}
+
+\subsection{Coeficientes binomiales}
+El número de subconjuntos de tamaño \( k \) de un conjunto de tamaño \( n \), está dado por:
+\[ 
+	\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!} 
+\]
+Sin embargo no es muy práctico usar esta fórmula ya que involucra factoriales. Se aprovecha el hecho de que \( \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k-1} \) para generar todos los coeficientes desde \( k = 0 \) hasta \( k = n \).
+
+\subsection{Coeficientes multinomiales}
+
+
+\subsection{Multiconjuntos}
+
+
+\subsection{Particiones}
+
+
+\subsection{Desarreglos}
+Un desarreglo es una permutación que no ``mapea'' ningún elemento a sí mismo. Por ejemplo, 231 es un desarreglo de 123, pero 132 no lo es (ya que el 1 queda en la misma posición).
+
+El número de desarreglos de un conjunto de \( n \) elementos es:
+\[
+	D_{n} = n! \cdot \ \sum_{k=0}^{n} \frac{(-1)^k}{k!}
+\]
+
+También se puede usar la siguiente recurrencia:
+	\[
+		D_{n} = \left \{ 
+			\begin{array}{lcc}
+				1 & n = 0
+				\\ 0 & n = 1
+				\\ (n-1)(D_{n-1} + D_{n-2}) & n \geq 2 
+			\end{array}
+		\right.
+	\]
+
+\subsection{Números de Stirling}
+
+\subsection{Números de Catalan}
+\[
+	C_{n} = \frac{1}{n+1} \binom{2n}{n}
+\]
+Sin embargo, puede ser más práctico usar la siguiente recurrencia:
+\[
+	C_0 = 1, \quad C_{n} = 2 \cdot \frac{(2n-1)C_{n-1}}{(n+1)}
+\]
+El número \( C_{n} \) tiene muchas interpretaciones. Entre ellas:
+\begin{itemize}
+	\item El número de árboles binarios diferentes con \( n \) vértices
+	\item El número formas de hacer una expresión con \( n \) pares de paréntesis balanceados
+	\item El número de formas de triangular un polígono con \( n+2 \) lados
+	\item El número de caminos monótonos que no pasan sobre la diagonal en una cuadrícula de \( n \cdot n \).
+\end{itemize}
 		
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas (ascendente y descendente)}
