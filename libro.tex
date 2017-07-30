@@ -23,6 +23,8 @@
 \setlength{\columnsep}{0.25in}
 \setlength{\columnseprule}{1px}
 
+\def\multiset#1#2{\ensuremath{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}}
+
 \begin{document}
 
 \begin{multicols}{2}
@@ -173,10 +175,13 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 		\]
 
 \section{Combinatoria}
+
 \subsection{Permutaciones}
 Un conjunto de \( n \) elementos diferentes tiene \( n! \) permutaciones. El número máximo cuyo factorial cabe en un \emph{long} de 64 bits es \( n = 20 \).
 
 Si se requiere generarlas explícitamente, se puede hacer hasta \( n = 10 \).
+
+\lstinputlisting[firstline=5, lastline=37]{./src/Permutations.java}
 
 \subsection{Subconjuntos}
 Un conjunto de \( n \) elementos tiene \( 2^{n} \) posibles subconjutos. 
@@ -189,16 +194,39 @@ El número de subconjuntos de tamaño \( k \) de un conjunto de tamaño \( n \),
 \[ 
 	\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!} 
 \]
-Sin embargo no es muy práctico usar esta fórmula ya que involucra factoriales. Se aprovecha el hecho de que \( \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k-1} \) para generar todos los coeficientes desde \( k = 0 \) hasta \( k = n \).
+Sin embargo no es muy práctico usar esta fórmula ya que involucra factoriales. Se aprovecha el hecho de que \( \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} \) para generar todos los coeficientes desde \( k = 0 \) hasta \( k = n \).
+\lstinputlisting[firstline=4, lastline=14]{./src/CoefBinomial.java}
 
 \subsection{Coeficientes multinomiales}
-
+Es el número de formas de particionar un conjunto de tamaño \( n \) en subconjuntos disjuntos de tamaño \( a_1, a_2, ..., a_m \).
+\[
+\binom{n}{a_1,a_2 ..., a_m} = \frac{n!}{a_1! \cdot a_2! ... \cdot a_m!}
+\]
 
 \subsection{Multiconjuntos}
+Un multiconjunto es un conjunto que permite elementos repetidos. El número de multiconjuntos de cardinalidad \( k \), con elementos tomados de un conjunto de cardinalidad \( n \), se puede contar como:
+\[ \multiset{n}{k} = \binom{k+n-1}{k} \]
 
+También se puede usar una recurrencia:
+\[ 
+	\multiset{n}{0} = 1, \quad \multiset{0}{k} = 0 \; \textrm{para} \; k > 0 
+\]
+\[ 
+	\multiset{n}{k} = \multiset{n}{k-1} + \multiset{n-1}{k} 
+\]
 
 \subsection{Particiones}
+Una partición de un conjunto es una colección de subconjuntos disjuntos tales que la unión de todos ellos es el conjunto original. La cantidad de maneras diferentes de particionar un conjunto de \( n \) elementos en \( k \) partes se denota como \( S(n, k) \) (números de Stirling de tipo 2).
 
+	\[
+		S(n,k) = \left \{ 
+			\begin{array}{lcc}
+				1 & n = 0
+				\\ 1 & k = 0
+				\\ S(n-1, k-1) + k \cdot S(n-1, k) & n \geq 1, k \geq 1
+			\end{array}
+		\right.
+	\]
 
 \subsection{Desarreglos}
 Un desarreglo es una permutación que no ``mapea'' ningún elemento a sí mismo. Por ejemplo, 231 es un desarreglo de 123, pero 132 no lo es (ya que el 1 queda en la misma posición).
@@ -218,8 +246,6 @@ También se puede usar la siguiente recurrencia:
 			\end{array}
 		\right.
 	\]
-
-\subsection{Números de Stirling}
 
 \subsection{Números de Catalan}
 \[
