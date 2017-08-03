@@ -3,7 +3,7 @@ public class CoefBinomial {
 
 	public static void main(String[] args) {
 		int n = 10;
-		int[][] C = new int[n][n];
+		long[][] C = new long[n][n];
 		
 		for(int i=0; i<n; i++){
 			C[i][0] = 1;

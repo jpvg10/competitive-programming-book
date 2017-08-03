@@ -177,16 +177,16 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 \section{Combinatoria}
 
 \subsection{Permutaciones}
-Un conjunto de \( n \) elementos diferentes tiene \( n! \) permutaciones. El número máximo cuyo factorial cabe en un \emph{long} de 64 bits es \( n = 20 \).
+Un conjunto de \( n \) elementos diferentes tiene \( n! \) permutaciones. El número máximo cuyo factorial cabe en un \emph{long} de 64 bits es \( n = 20 \). Más allá, se requiere usar BigInteger.
 
-Si se requiere generarlas explícitamente, se puede hacer hasta \( n = 10 \).
+El siguiente código es para generar las permutaciones explícitamente. Se puede hacer hasta \( n = 10 \).
 
 \lstinputlisting[firstline=5, lastline=37]{./src/Permutations.java}
 
 \subsection{Subconjuntos}
 Un conjunto de \( n \) elementos tiene \( 2^{n} \) posibles subconjutos. 
 
-Si se busca generarlos, cada subconjunto puede representarse como un número \( b \) de \( n \) bits. El elemento \( k \) pertenece al subconjunto si el bit \( k \) de \( b \) está en 1. No es viable hacerlo para \( n > 32 \).
+Si se busca generarlos, cada subconjunto puede representarse como un número \( b \) de \( n \) bits. El elemento \( k \) pertenece al subconjunto si el bit \( k \) de \( b \) está en 1. No es viable hacerlo para \( n > 30 \).
 \lstinputlisting[firstline=5, lastline=18]{./src/Subsets.java}
 
 \subsection{Coeficientes binomiales}
@@ -194,8 +194,12 @@ El número de subconjuntos de tamaño \( k \) de un conjunto de tamaño \( n \),
 \[ 
 	\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!} 
 \]
-Sin embargo no es muy práctico usar esta fórmula ya que involucra factoriales. Se aprovecha el hecho de que \( \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} \) para generar todos los coeficientes desde \( k = 0 \) hasta \( k = n \).
+
+Sin embargo no es muy práctico usar esta fórmula ya que involucra factoriales. Se puede utilizar la recurrencia \( \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} \) para generar todos los coeficientes binomiales \( \binom{i}{j} \) para \( 0 \leq i,j \leq n \).
+
 \lstinputlisting[firstline=4, lastline=14]{./src/CoefBinomial.java}
+
+Este código funciona para \( n \leq 67 \). Más allá, se requiere usar BigInteger.
 
 \subsection{Coeficientes multinomiales}
 Es el número de formas de particionar un conjunto de tamaño \( n \) en subconjuntos disjuntos de tamaño \( a_1, a_2, ..., a_m \).
@@ -216,27 +220,26 @@ También se puede usar una recurrencia:
 \]
 
 \subsection{Particiones}
-Una partición de un conjunto es una colección de subconjuntos disjuntos tales que la unión de todos ellos es el conjunto original. La cantidad de maneras diferentes de particionar un conjunto de \( n \) elementos en \( k \) partes se denota como \( S(n, k) \) (números de Stirling de tipo 2).
-
-	\[
-		S(n,k) = \left \{ 
-			\begin{array}{lcc}
-				1 & n = 0
-				\\ 1 & k = 0
-				\\ S(n-1, k-1) + k \cdot S(n-1, k) & n \geq 1, k \geq 1
-			\end{array}
-		\right.
-	\]
+Una partición de un conjunto es una colección de subconjuntos disjuntos, tales que la unión de todos ellos es el conjunto original. La cantidad de maneras diferentes de particionar un conjunto de \( n \) elementos en \( k \) partes se denota como \( S(n, k) \) (números de Stirling de tipo 2).
+\[
+	S(n,k) = \left \{ 
+		\begin{array}{lcc}
+			1 & n = 0
+			\\ 1 & k = 0
+			\\ S(n-1, k-1) + k \cdot S(n-1, k) & n \geq 1, k \geq 1
+		\end{array}
+	\right.
+\]
 
 \subsection{Desarreglos}
 Un desarreglo es una permutación que no ``mapea'' ningún elemento a sí mismo. Por ejemplo, 231 es un desarreglo de 123, pero 132 no lo es (ya que el 1 queda en la misma posición).
 
 El número de desarreglos de un conjunto de \( n \) elementos es:
 \[
-	D_{n} = n! \cdot \ \sum_{k=0}^{n} \frac{(-1)^k}{k!}
+	D_{n} = n! \cdot \ \sum_{k=0}^{n} \frac{(-1)^k}{k!} \approx \frac{n!}{e}
 \]
 
-También se puede usar la siguiente recurrencia:
+Puede ser más práctico usar la siguiente recurrencia:
 	\[
 		D_{n} = \left \{ 
 			\begin{array}{lcc}
@@ -246,22 +249,29 @@ También se puede usar la siguiente recurrencia:
 			\end{array}
 		\right.
 	\]
+	
+El máximo \( D_n \) que cabe en un \emph{long} es con \( n=20 \).
 
 \subsection{Números de Catalan}
 \[
 	C_{n} = \frac{1}{n+1} \binom{2n}{n}
 \]
+
 Sin embargo, puede ser más práctico usar la siguiente recurrencia:
 \[
-	C_0 = 1, \quad C_{n} = 2 \cdot \frac{(2n-1)C_{n-1}}{(n+1)}
+	C_0 = 1, \quad C_{n} = \frac{2(2n-1)C_{n-1}}{(n+1)}
 \]
+
 El número \( C_{n} \) tiene muchas interpretaciones. Entre ellas:
+
 \begin{itemize}
 	\item El número de árboles binarios diferentes con \( n \) vértices
 	\item El número formas de hacer una expresión con \( n \) pares de paréntesis balanceados
 	\item El número de formas de triangular un polígono con \( n+2 \) lados
 	\item El número de caminos monótonos que no pasan sobre la diagonal en una cuadrícula de \( n \cdot n \).
 \end{itemize}
+
+El \( C_{n} \) más grande que cabe en un \emph{long} es con \( n = 33 \). 
 		
 \section{Otros}
 	\subsection{Ordenamiento de Arrays y Listas (ascendente y descendente)}
