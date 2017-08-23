@@ -106,6 +106,16 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	La complejidad del alrgoritmo es \( O(n^3) \).
 	\lstinputlisting[firstline=4, lastline=48]{./src/FloydWarshall.java}
 
+	\subsection{Máximo flujo y mínimo corte}
+	Halla el máximo flujo que se puede emitir desde un origen \( s \) hacia un destino \( t \), dado que los enlaces (aristas) tienen una capacidad dada.
+	
+	Es el algoritmo de Edmonds-Karp, una implementación del método de Ford-Fulkerson que usa BFS para hallar los caminos en el grafo residual. Su complejidad es de \( O(nm^2) \).	
+	
+	Si hay varios orígenes \( \{s_1, s_2, ...\} \) , se pone un ``super origen'' \( s \), y se agregan aristas \( (s, s_i) \) con capacidad infinita. Análogamente, si hay varios destinos \( \{t_1, t_2, ...\} \), se agrega un ``super destino'' \( t \) y se agregan aristas \( (t_i, t) \) con capacidad infinita.
+	
+	El máximo flujo es igual al mínimo corte (esto es un teorema). Por ende, este algoritmo halla también el mínimo costo de cortar aristas de manera que \( s \) y \( t \) queden desconectados.
+	\lstinputlisting[firstline=9, lastline=84]{./src/MaxFlow.java}
+
 \section{KMP}
 Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}. Su complejidad es de \( O(m+n) \) donde \( m \) es la longitud de \emph{text} y \( n \) es la longitud de \emph{pattern}. Retorna la posición donde inicia la primera ocurrencia de \emph{text} dentro de \emph{pattern}, o -1 si no existe.
 \lstinputlisting[firstline=4, lastline=51]{./src/KMP.java}
