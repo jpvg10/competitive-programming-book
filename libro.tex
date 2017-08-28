@@ -19,7 +19,7 @@
 	numbers=left
 }
 
-\geometry{landscape,letterpaper,tmargin=1.5cm,bmargin=2cm,lmargin=1.6cm,rmargin=1.6cm}
+\geometry{landscape,letterpaper,tmargin=1cm,bmargin=2cm,lmargin=1cm,rmargin=1cm}
 \setlength{\columnsep}{0.25in}
 \setlength{\columnseprule}{1px}
 
@@ -106,15 +106,29 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	La complejidad del alrgoritmo es \( O(n^3) \).
 	\lstinputlisting[firstline=4, lastline=48]{./src/FloydWarshall.java}
 
-	\subsection{Máximo flujo y mínimo corte}
+	\subsection{Máximo flujo y mínimo corte (Algoritmo de Edmonds-Karp)}
 	Halla el máximo flujo que se puede emitir desde un origen \( s \) hacia un destino \( t \), dado que los enlaces (aristas) tienen una capacidad dada.
 	
-	Es el algoritmo de Edmonds-Karp, una implementación del método de Ford-Fulkerson que usa BFS para hallar los caminos en el grafo residual. Su complejidad es de \( O(nm^2) \).	
+	El algoritmo de Edmonds-Karp es una implementación del método de Ford-Fulkerson que usa BFS para hallar los caminos en el grafo residual. Su complejidad es de \( O(nm^2) \).
 	
-	Si hay varios orígenes \( \{s_1, s_2, ...\} \) , se pone un ``super origen'' \( s \), y se agregan aristas \( (s, s_i) \) con capacidad infinita. Análogamente, si hay varios destinos \( \{t_1, t_2, ...\} \), se agrega un ``super destino'' \( t \) y se agregan aristas \( (t_i, t) \) con capacidad infinita.
+	Variantes de este problema:	
 	
-	El máximo flujo es igual al mínimo corte (esto es un teorema). Por ende, este algoritmo halla también el mínimo costo de cortar aristas de manera que \( s \) y \( t \) queden desconectados.
+	\begin{itemize}
+		\item Mínimo corte: El máximo flujo es igual al mínimo corte (esto es un teorema). Por ende, este algoritmo halla también el mínimo costo de cortar aristas de manera que \( s \) y \( t \) queden desconectados.
+		\item Si hay varios orígenes \( \{s_1, s_2, ...\} \) , se pone un ``super origen'' \( s \), y se agregan aristas \( (s, s_i) \) con capacidad infinita. Análogamente, si hay varios destinos \( \{t_1, t_2, ...\} \), se agrega un ``super destino'' \( t \) y se agregan aristas \( (t_i, t) \) con capacidad infinita.
+		\item Nodos con capacidad: Si el nodo \( u \) tiene también una capacidad \( c_u \), se divide en dos nodos. Un nodo \( u_l\) que recibe todas las aristas que entran a \( u \), y un nodo \( u_r \) del que salen todas las aristas que salen de \( u \). Posteriormente, se agrega una arista \( (u_l, u_r) \) con capacidad \( c_u \).
+	\end{itemize}
+	
 	\lstinputlisting[firstline=9, lastline=84]{./src/MaxFlow.java}
+	
+	\subsubsection{Máximo matching de un grafo bipartito}
+	Un matching de un grafo es un subconjunto de aristas tal que en cada nodo incida máximo una de ellas. Si se trata de un grafo bipartito, encontrar el máximo matching (aquel con mayor cardinalidad) se puede modelar como un problema de máximo flujo: 
+	
+	Sea el grafo original \( G = (V, E) \), donde \( V = L \cup R \) (es decir, los vértices se separan en dos subconjuntos, ya que el grafo es bipartito). Se construye un nuevo grafo \( G' \), con los mismos vértices y aristas del grafo original. Se agregan a \( G' \) dos nuevos vértices \( s \) y \( t \). Posteriormente se agregan aristas de \( (s, l_i) \) para los vértices \( l_i  \in L \), y aristas \( (u_i, t) \) para los vértices \( u_i \in U \). Todas las aristas se ponen con capacidad 1.
+	
+	El máximo matching en \( G \) es equivalente al máximo flujo entre \( s \) y \( t \) en \( G' \).
+	
+	Esta no es la forma más eficiente de resolver este problema, ya que hay algoritmos específicos para él que no lo modelan como un máximo flujo (por ejemplo, el algoritmo de Hopcroft-Karp).
 
 \section{KMP}
 Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}. Su complejidad es de \( O(m+n) \) donde \( m \) es la longitud de \emph{text} y \( n \) es la longitud de \emph{pattern}. Retorna la posición donde inicia la primera ocurrencia de \emph{text} dentro de \emph{pattern}, o -1 si no existe.
@@ -186,70 +200,60 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 
 \section{Combinatoria}
 
-\subsection{Permutaciones}
-Un conjunto de \( n \) elementos diferentes tiene \( n! \) permutaciones. El número máximo cuyo factorial cabe en un \emph{long} de 64 bits es \( n = 20 \). Más allá, se requiere usar BigInteger.
-
-El siguiente código es para generar las permutaciones explícitamente. Se puede hacer hasta \( n = 10 \).
-
-\lstinputlisting[firstline=5, lastline=37]{./src/Permutations.java}
+	\subsection{Permutaciones}
+	Un conjunto de \( n \) elementos diferentes tiene \( n! \) permutaciones. El número máximo cuyo factorial cabe en un \emph{long} de 64 bits es \( n = 20 \). Más allá, se requiere usar BigInteger.
 
 \subsection{Subconjuntos}
-Un conjunto de \( n \) elementos tiene \( 2^{n} \) posibles subconjutos. 
+	Un conjunto de \( n \) elementos tiene \( 2^{n} \) posibles subconjutos. 
 
-Si se busca generarlos, cada subconjunto puede representarse como un número \( b \) de \( n \) bits. El elemento \( k \) pertenece al subconjunto si el bit \( k \) de \( b \) está en 1. No es viable hacerlo para \( n > 30 \).
-\lstinputlisting[firstline=5, lastline=18]{./src/Subsets.java}
+	Si se busca generarlos, cada subconjunto puede representarse como un número \( b \) de \( n \) bits. El elemento \( k \) pertenece al subconjunto si el bit \( k \) de \( b \) está en 1. No es viable hacerlo para \( n > 30 \).
+	\lstinputlisting[firstline=5, lastline=18]{./src/Subsets.java}
 
-\subsection{Coeficientes binomiales}
-El número de subconjuntos de tamaño \( k \) de un conjunto de tamaño \( n \), está dado por:
-\[ 
-	\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!} 
-\]
+	\subsection{Coeficientes binomiales}
+	El número de subconjuntos de tamaño \( k \) de un conjunto de tamaño \( n \), está dado por:
+	\[ 
+		\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!} 
+	\]
 
-Sin embargo no es muy práctico usar esta fórmula ya que involucra factoriales. Se puede utilizar la recurrencia \( \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} \) para generar todos los coeficientes binomiales \( \binom{i}{j} \) para \( 0 \leq i,j \leq n \).
+	Sin embargo no es muy práctico usar esta fórmula ya que involucra factoriales. Se puede utilizar la recurrencia \( \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} \) para generar todos los coeficientes binomiales \( \binom{i}{j} \) para \( 0 \leq i,j \leq n \).
 
-\lstinputlisting[firstline=4, lastline=14]{./src/CoefBinomial.java}
+	\lstinputlisting[firstline=4, lastline=14]{./src/CoefBinomial.java}
 
-Este código funciona para \( n \leq 67 \). Más allá, se requiere usar BigInteger.
+	Este código funciona para \( n \leq 67 \). Más allá, se requiere usar BigInteger.
 
-\subsection{Coeficientes multinomiales}
-Es el número de formas de particionar un conjunto de tamaño \( n \) en subconjuntos disjuntos de tamaño \( a_1, a_2, ..., a_m \).
-\[
-\binom{n}{a_1,a_2 ..., a_m} = \frac{n!}{a_1! \cdot a_2! ... \cdot a_m!}
-\]
+	\subsection{Multiconjuntos}
+	Un multiconjunto es un conjunto que permite elementos repetidos. El número de multiconjuntos de cardinalidad \( k \), con elementos tomados de un conjunto de cardinalidad \( n \), se puede contar como:
+	\[ \multiset{n}{k} = \binom{k+n-1}{k} \]
 
-\subsection{Multiconjuntos}
-Un multiconjunto es un conjunto que permite elementos repetidos. El número de multiconjuntos de cardinalidad \( k \), con elementos tomados de un conjunto de cardinalidad \( n \), se puede contar como:
-\[ \multiset{n}{k} = \binom{k+n-1}{k} \]
-
-También se puede usar una recurrencia:
-\[ 
-	\multiset{n}{0} = 1, \quad \multiset{0}{k} = 0 \; \textrm{para} \; k > 0 
-\]
-\[ 
-	\multiset{n}{k} = \multiset{n}{k-1} + \multiset{n-1}{k} 
-\]
+	También se puede usar una recurrencia:
+	\[ 
+		\multiset{n}{0} = 1, \quad \multiset{0}{k} = 0 \; \textrm{para} \; k > 0 
+	\]
+	\[ 
+		\multiset{n}{k} = \multiset{n}{k-1} + \multiset{n-1}{k} 
+	\]
 
 \subsection{Particiones}
-Una partición de un conjunto es una colección de subconjuntos disjuntos, tales que la unión de todos ellos es el conjunto original. La cantidad de maneras diferentes de particionar un conjunto de \( n \) elementos en \( k \) partes se denota como \( S(n, k) \) (números de Stirling de tipo 2).
-\[
-	S(n,k) = \left \{ 
-		\begin{array}{lcc}
+	Una partición de un conjunto es una colección de subconjuntos disjuntos, tales que la unión de todos ellos es el conjunto original. La cantidad de maneras diferentes de particionar un conjunto de \( n \) elementos en \( k \) partes se denota como \( S(n, k) \) (números de Stirling de tipo 2).
+	\[
+		S(n,k) = \left \{ 
+			\begin{array}{lcc}
 			1 & n = 0
 			\\ 1 & k = 0
 			\\ S(n-1, k-1) + k \cdot S(n-1, k) & n \geq 1, k \geq 1
-		\end{array}
-	\right.
-\]
+			\end{array}
+		\right.
+	\]
 
-\subsection{Desarreglos}
-Un desarreglo es una permutación que no ``mapea'' ningún elemento a sí mismo. Por ejemplo, 231 es un desarreglo de 123, pero 132 no lo es (ya que el 1 queda en la misma posición).
+	\subsection{Desarreglos}
+	Un desarreglo es una permutación que no ``mapea'' ningún elemento a sí mismo. Por ejemplo, 231 es un desarreglo de 123, pero 132 no lo es (ya que el 1 queda en la misma posición).
 
-El número de desarreglos de un conjunto de \( n \) elementos es:
-\[
-	D_{n} = n! \cdot \ \sum_{k=0}^{n} \frac{(-1)^k}{k!} \approx \frac{n!}{e}
-\]
+	El número de desarreglos de un conjunto de \( n \) elementos es:
+	\[
+		D_{n} = n! \cdot \ \sum_{k=0}^{n} \frac{(-1)^k}{k!} \approx \frac{n!}{e}
+	\]
 
-Puede ser más práctico usar la siguiente recurrencia:
+	Puede ser más práctico usar la siguiente recurrencia:
 	\[
 		D_{n} = \left \{ 
 			\begin{array}{lcc}
@@ -260,31 +264,31 @@ Puede ser más práctico usar la siguiente recurrencia:
 		\right.
 	\]
 	
-El máximo \( D_n \) que cabe en un \emph{long} es con \( n=20 \).
+	El máximo \( D_n \) que cabe en un \emph{long} es con \( n=20 \).
 
-\subsection{Números de Catalan}
-\[
-	C_{n} = \frac{1}{n+1} \binom{2n}{n}
-\]
+	\subsection{Números de Catalan}
+	\[
+		C_{n} = \frac{1}{n+1} \binom{2n}{n}
+	\]
 
-Sin embargo, puede ser más práctico usar la siguiente recurrencia:
-\[
-	C_0 = 1, \quad C_{n} = \frac{2(2n-1)C_{n-1}}{(n+1)}
-\]
+	Sin embargo, puede ser más práctico usar la siguiente recurrencia:
+	\[
+		C_0 = 1, \quad C_{n} = \frac{2(2n-1)C_{n-1}}{(n+1)}
+	\]
 
-El número \( C_{n} \) tiene muchas interpretaciones. Entre ellas:
+	El número \( C_{n} \) tiene muchas interpretaciones. Entre ellas:
 
-\begin{itemize}
-	\item El número de árboles binarios diferentes con \( n \) vértices
-	\item El número formas de hacer una expresión con \( n \) pares de paréntesis balanceados
-	\item El número de formas de triangular un polígono con \( n+2 \) lados
-	\item El número de caminos monótonos que no pasan sobre la diagonal en una cuadrícula de \( n \cdot n \).
-\end{itemize}
+	\begin{itemize}
+		\item El número de árboles binarios diferentes con \( n \) vértices
+		\item El número formas de hacer una expresión con \( n \) pares de paréntesis balanceados
+		\item El número de formas de triangular un polígono con \( n+2 \) lados
+		\item El número de caminos monótonos que no pasan sobre la diagonal en una cuadrícula de \( n \cdot n \).
+	\end{itemize}
 
-El \( C_{n} \) más grande que cabe en un \emph{long} es con \( n = 33 \). 
+	El \( C_{n} \) más grande que cabe en un \emph{long} es con \( n = 33 \). 
 		
 \section{Otros}
-	\subsection{Ordenamiento de Arrays y Listas (ascendente y descendente)}
+	\subsection{Ordenamiento de Arrays y Listas}
 	Cuando necesite ordenar un vector o una lista, utilice los métodos .sort() que tiene 		Java. El algoritmo que utilizan es QuickSort y su complejidad es \( O(n\log n) \).
 	\lstinputlisting[firstline=7, lastline=15]{./src/Sorting.java}
 	

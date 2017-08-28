@@ -15,7 +15,7 @@ public class ColaDePrioridad {
 		PriorityQueue<Integer> pqInversa = new PriorityQueue<Integer>(Collections.reverseOrder());
 		pqInversa.add(3);
 		pqInversa.add(1);
-		pq.poll(); //Saca el 3
+		pqInversa.poll(); //Saca el 3
 	}
 
 }
