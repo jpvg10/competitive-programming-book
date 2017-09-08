@@ -148,7 +148,8 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 	\lstinputlisting[firstline=3, lastline=37]{./src/EditDistance.java}
 	
 	\subsection{Coin Change Problem}
-	Se tienen monedas de \( n \) denominaciones diferentes. Se requiere encontrar el mínimo número de monedas tales que su valor sume exactamente \( W \).	
+	Se tienen monedas de \( n \) denominaciones diferentes. Se requiere encontrar el mínimo número de monedas tales que su valor sume exactamente \( W \). Su complejidad es \( O(nW) \).
+	\lstinputlisting[firstline=5, lastline=59]{./src/CoinChange.java}	
 	
 	\subsection{El problema de la mochila (Knapsack)}
 	Se tiene una mochila con capacidad \( W \), y \( n \) items con un peso \( w_i \) y un valor \( v_i \) cada uno. Se quiere hallar el conjunto de items tal que la suma de sus pesos no exceda \( W \), y que la suma de sus valores sea lo más grande posible. Su complejidad es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
