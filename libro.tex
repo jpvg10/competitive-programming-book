@@ -138,14 +138,24 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 	\subsection{Longest Increasing Subsequence}
 		Halla la longitud de la subsecuencia creciente más larga que hay en un vector (o String). También halla los elementos que pertenecen a dicha subsecuencia, por si llega a ser necesario. Su complejidad es \( O(n^2) \).
 		\lstinputlisting[firstline=5, lastline=46]{./src/LIS.java}
+		
 	\subsection{Longest Common Subsequence}
 		Halla la longitud de la subsecuencia común más larga entre dos Strings (o vectores). También halla los elementos que pertenecen a dicha subsecuencia, por si llega a ser necesario. Su complejidad es \( O(mn) \), donde \( m \) y \( n \) son las longitudes de los Strings.
 		\lstinputlisting[firstline=4, lastline=41]{./src/LCS.java}
-	\subsection{Coin Change Problem}
+	
 	\subsection{Edit Distance}
+	Halla el número mínimo de operaciones necesarias para transformar un String en otro. Las operaciones permitidas son eliminar, insertar o modificar un caracter	del String. La complejidad del algoritmo es \( O(mn) \), donde \( m \) y \( n \) son las longitudes de los Strings.
+	\lstinputlisting[firstline=3, lastline=37]{./src/EditDistance.java}
+	
+	\subsection{Coin Change Problem}
+	Se tienen monedas de \( n \) denominaciones diferentes. Se requiere encontrar el mínimo número de monedas tales que su valor sume exactamente \( W \).	
+	
 	\subsection{El problema de la mochila (Knapsack)}
 	Se tiene una mochila con capacidad \( W \), y \( n \) items con un peso \( w_i \) y un valor \( v_i \) cada uno. Se quiere hallar el conjunto de items tal que la suma de sus pesos no exceda \( W \), y que la suma de sus valores sea lo más grande posible. Su complejidad es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
 	\lstinputlisting[firstline=4, lastline=44]{./src/Knapsack.java}
+	
+\section{Range Minimum Query}
+
 
 \section{Teoría de números}
 	\subsection{Algoritmo de Euclides}
