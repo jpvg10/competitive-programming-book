@@ -155,8 +155,11 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 	Se tiene una mochila con capacidad \( W \), y \( n \) items con un peso \( w_i \) y un valor \( v_i \) cada uno. Se quiere hallar el conjunto de items tal que la suma de sus pesos no exceda \( W \), y que la suma de sus valores sea lo más grande posible. Su complejidad es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
 	\lstinputlisting[firstline=4, lastline=44]{./src/Knapsack.java}
 	
-\section{Range Minimum Query}
+\section{Range Minimum Query (Sparse Table)}
+Dado un vector de \( n \) elementos, encuentra el mínimo elemento en el subarray comprendido entre los índices \emph{inf} y \emph{sup} (inclusivos).
 
+Este algoritmo (Sparse Table) hace un pre-procesamiento del array en \( O(n \log n) \), y responde cada query en \( O(1) \).
+	\lstinputlisting[firstline=3, lastline=48]{./src/SparseTable.java}
 
 \section{Teoría de números}
 	\subsection{Algoritmo de Euclides}
@@ -304,13 +307,13 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 	\lstinputlisting[firstline=7, lastline=15]{./src/Sorting.java}
 	
 	\subsection{Cola de Prioridad}
-	Cola en la que la cabeza siempre es el menor elemento presente. Las operaciones add() y poll() son \( O(\log n ) \). La operación peek() es \( O(1) \).
+	Cola en la que la cabeza siempre es el menor elemento presente. Las operaciones .add() y .poll() son \( O(\log n ) \). La operación .peek() es \( O(1) \).
 	
 	También se puede invertir, haciendo que la cabeza siempre sea el mayor elemento, pasando el parámetro Collections.reverseOrder().
 	\lstinputlisting[firstline=6, lastline=19]{./src/ColaDePrioridad.java}
 	
 	\subsection{Interfaz Comparable}
-	En ocasiones se puede necesitar ordenar un vector o lista de un tipo de datos definido por el usuario (clase), o utilizar una cola de prioridad. Para hacer esto, la clase debe implementar la interfaz Comparable de Java.
+	En ocasiones se puede necesitar ordenar un vector o lista de un tipo de datos definido por el usuario (clase), o utilizar una cola de prioridad de este tipo. Para hacer esto, la clase debe implementar la interfaz Comparable de Java.
 
 	El método compareTo() debe retornar:
 	\begin{itemize}
