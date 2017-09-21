@@ -18,8 +18,15 @@ class Arista implements Comparable<Arista>{
 public class Kruskal {
 
 	public static void main(String[] args) {
-		int n = 10; //Cantidad de nodos del grafo
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
 		ArrayList<Arista> aristas = new ArrayList<Arista>();
+		while(sc.hasNextInt()){
+			int u = sc.nextInt();
+			int v = sc.nextInt();
+			int c = sc.nextInt();
+			aristas.add(new Arista(u, v, c));
+		}		
 		int mst = kruskal(aristas, n);
 	}
 

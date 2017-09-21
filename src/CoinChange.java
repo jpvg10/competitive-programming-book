@@ -33,7 +33,7 @@ public class CoinChange {
 		}else {
 			result = minimal[sum];
 
-			// Si se quiere hallar exactamente cuales monedas se escogieron
+			//Para hallar cuales monedas se escogieron
 			coinsResult = new int[result];
 			int pointer = sum;
 			for (int i = 0; i < result; i++) {
@@ -44,11 +44,11 @@ public class CoinChange {
 	}
 
 	public static void main(String[] args) {
-		int sum = 800;
-		int[] denominations = { 100, 200, 500 };
+		int sum = 700;
+		int[] denominations = { 100, 300, 500, 400 };
 		coinChange(sum, denominations);
 		if(result == -1) {
-			// No es posible
+			// No es posible obtener esta suma
 		}else {
 			System.out.println(result);
 			for(int c : coinsResult) {

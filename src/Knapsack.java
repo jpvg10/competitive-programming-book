@@ -10,7 +10,7 @@ public class Knapsack {
 		//Tener cuidado: En la matriz los items se numeran 1...n y la capacidad de la mochila 1...W
 		int A[][] = new int[n+1][W+1];
 
-		//Aca se resuelve el problema. Asegurarse de tener los values y weights
+		//Aca se resuelve el problema
 		for (int i=1; i<=n; i++) {
 			for (int x=0; x<=W; x++) {
 				if (weights[i-1] > x) {

@@ -1,28 +1,35 @@
+import java.util.Scanner;
 
 public class FloydWarshall {
 
 	public static void main(String[] args) {
-		int n = 5;
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();		
 		int grafo[][] = new int[n][n];
 		int A[][] = new int[n][n];
-
+		
 		for(int i=0; i<n; i++){
-			for(int j=0; j<n; j++){
-				if(i == j){
-					grafo[i][j] = 0;
-				}else{
+			for(int j=0; j<n; j++){				
+				if(i != j) {
 					grafo[i][j] = Integer.MAX_VALUE;
 				}
 			}
 		}
-
-		//Tener la matriz del grafo llena antes de hacer esto
+		
+		while(sc.hasNextInt()) {
+			int u = sc.nextInt();
+			int v = sc.nextInt();
+			int c = sc.nextInt();
+			grafo[u][v] = c;
+			grafo[v][u] = c; //Si es no-dirigido
+		}
+		
 		for(int i=0; i<n; i++){
 			for(int j=0; j<n; j++){
 				A[i][j] = grafo[i][j];
 			}
 		}
-
+		
 		for(int k=0; k<n; k++){
 			for(int i=0; i<n; i++){
 				for(int j=0; j<n; j++){
@@ -33,7 +40,7 @@ public class FloydWarshall {
 					}else{
 						option2 = A[i][k] + A[k][j];
 					}
-					A[i][j] = Math.min(option1, option2);
+					A[i][j] = Integer.min(option1, option2);
 				}
 			}
 		}

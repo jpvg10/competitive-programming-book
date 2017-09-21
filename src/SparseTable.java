@@ -2,8 +2,8 @@ public class SparseTable {
 
 	static int[][] sparseTable;
 
-	// Metodo para armar la sparseTable, recibe el array de entrada y no retorna nada
-	// Notese que la sparseTable se tiene como variable global
+	// Metodo para armar la sparseTable
+	// Notese que sparseTable esta como variable global
 	public static void buildTable(int[] array) {
 		int len = array.length;
 		int log = log2(len);

@@ -8,7 +8,6 @@ public class Criba {
 		marked[0] = true;
 		marked[1] = true;
 		ArrayList<Integer> primos = new ArrayList<Integer>();
-
 		for(int i=2; i<=n; i++){
 			if(!marked[i]){
 				primos.add(i);
@@ -20,7 +19,6 @@ public class Criba {
 				}
 			}
 		}
-
 		return primos;
 	}
 

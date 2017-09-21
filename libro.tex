@@ -55,7 +55,9 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 
 \section{Grafos}
 	\subsection{BFS y DFS}
-	Recorren un grafo a partir de un nodo origen y visitan todos los nodos alcanzables desde éste. Ambos algoritmos tienen una complejidad de \( O(n + m) \) donde \( n \) es el número de nodos y \( m \) es el número de aristas del grafo. El siguiente ejemplo está con DFS pero funciona igual con BFS.	
+	Recorren un grafo a partir de un nodo origen y visitan todos los nodos alcanzables desde éste. Ambos algoritmos tienen una complejidad de \( O(n + m) \) donde \( n \) es el número de nodos y \( m \) es el número de aristas del grafo. 
+	
+	El siguiente ejemplo está con DFS pero funciona igual con BFS.	
 	\lstinputlisting[firstline=8, lastline=75]{./src/Grafos.java}
 
 	\subsection{Shortest Hop}
@@ -66,29 +68,33 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 	Todo grafo dirigido acíclico (DAG) tiene un ordenamiento topológico. Esto significa que para todas las aristas \( (u,v) \), \(u\) aparece en el ordenamiento antes que \(v\). Visualmente es como si se pusieran todos los nodos en línea recta y todas las aristas fueran de izquierda a derecha, ninguna de derecha a izquierda. 
 	
 	El algoritmo para hallar dicho ordenamiento es una modificación de DFS y complejidad es la misma: \( O(n + m) \). El método retorna falso si detecta un ciclo en el grafo, ya que en este caso no existe ordenamiento topológico posible.
-	\lstinputlisting[firstline=6, lastline=55]{./src/TopoSort.java}
+	\lstinputlisting[firstline=7, lastline=55]{./src/TopoSort.java}
 	
 	\subsection{Componentes fuertemente conexas (Algoritmo de Tarjan)}
 	Calcula la componente fuertemente conexa a la que pertenece cada nodo de un grafo dirigido. Si dos nodos \( u, v \) están en la misma componente, significa que existe un camino de \( u \) a \( v \) y uno de \( v \) a \( u \). Su complejidad es \( O(n + m) \).
 	\lstinputlisting[firstline=6, lastline=64]{./src/Tarjan.java}
 	
 	\subsection{Puntos de articulación}
-	Halla los puntos de articulación de un grafo. Un punto de articulación es un nodo del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un punto de articulación es un nodo que, si se quitara, incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
+	Halla los puntos de articulación de un grafo. Un punto de articulación es un nodo del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un punto de articulación es un nodo que, si se quitara, incrementaría el número de componentes conexas. 
+	
+	La complejidad del algoritmo es \( O(n + m) \).
 	\lstinputlisting[firstline=6, lastline=58]{./src/ArticulationPoints.java}
 	
 	\subsection{Puentes}
-	Halla los puentes de un grafo.  Un puente es una arista del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un puente es una arista que, si se quitara, incrementaría el número de componentes conexas. La complejidad del algoritmo es \( O(n + m) \).
+	Halla los puentes de un grafo.  Un puente es una arista del grafo que si se quitara causaría que el grafo se ``desconectara''. Si el grafo no era conexo en un principio, un puente es una arista que, si se quitara, incrementaría el número de componentes conexas.
+	
+	La complejidad del algoritmo es \( O(n + m) \).
 	\lstinputlisting[firstline=3, lastline=64]{./src/GraphBridges.java}
 	
 	\subsection{Minimum Spanning Tree (Algoritmo de Kruskal)}
 	Halla el árbol de cubrimiento mínimo de un grafo no-dirigido y conexo. Si no está garantizado de antemano que el grafo sea conexo, hay que verificarlo antes de correr este algoritmo. 
 		
 	Utiliza la estructura de datos Union-Find discutida anteriormente. El grafo debe ser representado como una lista de objetos tipo Arista. Tiene una complejidad de \( O( m \log n) \).	
-	\lstinputlisting[firstline=4, lastline=43]{./src/Kruskal.java}
+	\lstinputlisting[firstline=4, lastline=50]{./src/Kruskal.java}
 	
 	\subsection{Algoritmo de Dijkstra}
 	Halla la distancia más corta desde un nodo origen \emph{src} hacia todos los demás nodos. Funciona con grafos dirigidos y no dirigidos, siempre y cuando los pesos de las aristas sean no-negativos. Se debe representar el grafo tanto en lista como en matriz de adyacencia. Su complejidad es \( O(m + n \log n) \).
-	\lstinputlisting[firstline=6, lastline=77]{./src/Dijkstra.java}
+	\lstinputlisting[firstline=6, lastline=85]{./src/Dijkstra.java}
 	
 	\subsection{Algoritmo de Floyd-Warshall}
 	Halla la distancia más corta desde todos los nodos hacia todos los demás. El grafo debe estar representado en matriz de adyacencia, y puede tener aristas con peso negativo. Sin embargo, no puede tener ciclos de peso negativo. En caso de que exista un ciclo negativo, el algoritmo lo detectará. Si todas las artistas son no-negativas, se puede omitir la comprobación del ciclo negativo.
@@ -104,7 +110,7 @@ Estructura de datos que soporta las siguientes operaciones eficientemente:
 		\right.
 	\]
 	La complejidad del alrgoritmo es \( O(n^3) \).
-	\lstinputlisting[firstline=4, lastline=48]{./src/FloydWarshall.java}
+	\lstinputlisting[firstline=5, lastline=55]{./src/FloydWarshall.java}
 
 	\subsection{Máximo flujo y mínimo corte (Algoritmo de Edmonds-Karp)}
 	Halla el máximo flujo que se puede emitir desde un origen \( s \) hacia un destino \( t \), dado que los enlaces (aristas) tienen una capacidad dada.
@@ -136,15 +142,15 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 
 \section{Programación dinámica}
 	\subsection{Longest Increasing Subsequence}
-		Halla la longitud de la subsecuencia creciente más larga que hay en un vector (o String). También halla los elementos que pertenecen a dicha subsecuencia, por si llega a ser necesario. Su complejidad es \( O(n^2) \).
+		Halla la longitud de la subsecuencia creciente más larga que hay en un vector (o String). También halla los elementos que pertenecen a dicha subsecuencia, si fuese necesario. Su complejidad es \( O(n^2) \).
 		\lstinputlisting[firstline=5, lastline=46]{./src/LIS.java}
 		
 	\subsection{Longest Common Subsequence}
-		Halla la longitud de la subsecuencia común más larga entre dos Strings (o vectores). También halla los elementos que pertenecen a dicha subsecuencia, por si llega a ser necesario. Su complejidad es \( O(mn) \), donde \( m \) y \( n \) son las longitudes de los Strings.
+		Halla la longitud de la subsecuencia común más larga entre dos Strings (o vectores). También halla los elementos que pertenecen a dicha subsecuencia, si fuese necesario. Su complejidad es \( O(mn) \), donde \( m \) y \( n \) son las longitudes de los Strings.
 		\lstinputlisting[firstline=4, lastline=41]{./src/LCS.java}
 	
 	\subsection{Edit Distance}
-	Halla el número mínimo de operaciones necesarias para transformar un String en otro. Las operaciones permitidas son eliminar, insertar o modificar un caracter	del String. La complejidad del algoritmo es \( O(mn) \), donde \( m \) y \( n \) son las longitudes de los Strings.
+	Halla el número mínimo de operaciones necesarias para transformar un String en otro. Las operaciones permitidas son eliminar, insertar o modificar un caracter del String. La complejidad del algoritmo es \( O(mn) \).
 	\lstinputlisting[firstline=3, lastline=37]{./src/EditDistance.java}
 	
 	\subsection{Coin Change Problem}
@@ -152,7 +158,7 @@ Algoritmo para buscar una cadena \emph{pattern} dentro de una cadena \emph{text}
 	\lstinputlisting[firstline=5, lastline=59]{./src/CoinChange.java}	
 	
 	\subsection{El problema de la mochila (Knapsack)}
-	Se tiene una mochila con capacidad \( W \), y \( n \) items con un peso \( w_i \) y un valor \( v_i \) cada uno. Se quiere hallar el conjunto de items tal que la suma de sus pesos no exceda \( W \), y que la suma de sus valores sea lo más grande posible. Su complejidad es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
+	Se tiene una mochila con capacidad \( W \), y \( n \) items con un peso \( w_i \) y un valor \( v_i \) cada uno. Se quiere hallar un conjunto de items tal que la suma de sus pesos no exceda \( W \), y que la suma de sus valores sea lo más grande posible. Su complejidad es \( O(nW) \). Es posible indicar cuál es el mayor valor posible, y con un ciclo adicional, indicar exactamente cuáles items se seleccionaron.
 	\lstinputlisting[firstline=4, lastline=44]{./src/Knapsack.java}
 	
 \section{Range Minimum Query (Sparse Table)}
@@ -170,11 +176,11 @@ Este algoritmo (Sparse Table) hace un pre-procesamiento del array en \( O(n \log
 	Dependiendo del problema, puede que nos sirva la forma ``fuerza bruta''. Esta forma tiene una complejidad de \( O(\sqrt{n}) \). Sin embargo, si tenemos números de más de 64 bits (que no caben en un \emph{long}) ya esta forma no es viable. 
 	
 	La clase BigInteger provee un método probabilístico para determinar si un número es primo. Si el número es compuesto, el método retona \emph{false} siempre. Si el método retorna \emph{true}, hay una probabilidad de \( 1-\frac{1}{2^x} \) de que el número sea primo, donde \(x\) es un parámetro que se le pasa a la función. Generalmente un valor de \(x = 10\) está bien.
-	\lstinputlisting[firstline=5, lastline=28]{./src/CheckPrime.java}
+	\lstinputlisting[firstline=5, lastline=25]{./src/CheckPrime.java}
 
 	\subsection{Criba  de Eratóstenes}
 	Algoritmo para hallar los números primos menores o iguales a \( n \). Su complejidad es \( O(n \log \log n) \).
-	\lstinputlisting[firstline=6, lastline=25]{./src/Criba.java}
+	\lstinputlisting[firstline=7, lastline=28]{./src/Factorizar.java}
 	
 	\subsection{Factorización prima de un número}
 	Se busca expresar un número \( n \) como una multiplicación de factores primos, de la forma:
@@ -185,7 +191,7 @@ Este algoritmo (Sparse Table) hace un pre-procesamiento del array en \( O(n \log
 	El método retorna un HashMap donde la \emph{clave} es el factor primo \( p_{i} \) y el \emph{valor} su multiplicidad \( a_{i} \). Se puede modificar fácilmente para retornar una lista de todos los factores, o retornar la cantidad de factores.
 	
 	Con algunas modificaciones, puede funcionar más o menos hasta \( n = 10^{12} \).
-	\lstinputlisting[firstline=7, lastline=72]{./src/Factorizar.java}
+	\lstinputlisting[firstline=30, lastline=74]{./src/Factorizar.java}
 	
 	\subsection{Fórmulas}
 	Para \( n \geq 2 \) es posible calcular algunas cosas partiendo de la factorización prima de \( n \):
@@ -262,12 +268,6 @@ Este algoritmo (Sparse Table) hace un pre-procesamiento del array en \( O(n \log
 	\subsection{Desarreglos}
 	Un desarreglo es una permutación que no ``mapea'' ningún elemento a sí mismo. Por ejemplo, 231 es un desarreglo de 123, pero 132 no lo es (ya que el 1 queda en la misma posición).
 
-	El número de desarreglos de un conjunto de \( n \) elementos es:
-	\[
-		D_{n} = n! \cdot \ \sum_{k=0}^{n} \frac{(-1)^k}{k!} \approx \frac{n!}{e}
-	\]
-
-	Puede ser más práctico usar la siguiente recurrencia:
 	\[
 		D_{n} = \left \{ 
 			\begin{array}{lcc}
@@ -324,6 +324,13 @@ Este algoritmo (Sparse Table) hace un pre-procesamiento del array en \( O(n \log
 	
 	Por ejemplo, se tiene una clase Persona con dos campos: nombre y edad. Se quiere ordenar una lista de objetos tipo Persona de menor a mayor edad.
 	\lstinputlisting[firstline=4, lastline=23]{./src/Persona.java}
+	
+	\subsection{Búsqueda binaria}
+	Java provee un método para hacer búsqueda binaria. Su complejidad es de \( O( \log n ) \), pero el vector (o lista) debe estar ordenado previamente.
+	
+	\lstinputlisting[firstline=7, lastline=14]{./src/BusquedaBinaria.java}
+	
+	Lo mismo pero con Collections.binarySearch() para buscar en ArrayList o LinkedList
 	
 	\subsection{Imprimir números decimales redondeados}
 	Generalmente basta con esta función de Java para redondear correctamente números decimales.	

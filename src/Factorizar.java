@@ -7,13 +7,6 @@ public class Factorizar {
 	static int menorFactor[];
 	static ArrayList<Integer> primos;
 
-	public static void main(String[] args) {
-		//Por ejemplo, si el mayor valor posible es 10000, se hace la criba hasta 100
-		cribaFactores(100);
-		HashMap<Integer, Integer> fac = factorizar(895);
-		System.out.println(fac.toString());
-	}
-
 	public static void cribaFactores(int n){
 		menorFactor = new int[n+1];
 		Arrays.fill(menorFactor, -1);
@@ -32,6 +25,15 @@ public class Factorizar {
 				}
 			}
 		}
+	}
+
+	// Se debe incluir el metodo cribaFactores
+	public static void main(String[] args) {
+		//Por ejemplo, si el mayor valor posible es 10000, se hace la criba hasta 100
+		int max = 100;
+		cribaFactores(max);
+		HashMap<Integer, Integer> fac = factorizar(895);
+		System.out.println(fac.toString());
 	}
 
 	public static HashMap<Integer, Integer> factorizar(int n){

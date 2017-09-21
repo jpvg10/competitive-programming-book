@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class TopoSort {
@@ -19,7 +20,7 @@ public class TopoSort {
 
 		boolean sinCiclo = true;
 
-		//Es necesario hacer el ciclo para visitar todos los nodos
+		//Es necesario hacer el for para visitar todos los nodos
 		for(int u=0; u<n; u++){
 			if(seen[u] == 0){
 				sinCiclo = sinCiclo && topoDfs(u);
@@ -32,9 +33,8 @@ public class TopoSort {
 			//Hay un ciclo
 		}
 	}
-
-	private static boolean topoDfs(int u){
-		//DFS "modificado" para hacer ordenamiento topologico
+	
+	private static boolean topoDfs(int u){		
 		//Se marca 'u' como 'gris'
 		seen[u] = 1;
 		int len = g[u].size();
