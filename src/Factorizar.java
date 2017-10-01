@@ -29,17 +29,17 @@ public class Factorizar {
 
 	// Se debe incluir el metodo cribaFactores
 	public static void main(String[] args) {
-		//Por ejemplo, si el mayor valor posible es 10000, se hace la criba hasta 100
-		int max = 100;
+		//Por ejemplo, si el mayor valor posible es 10^14, se hace la criba hasta 10^7
+		int max = 10000000;
 		cribaFactores(max);
-		HashMap<Integer, Integer> fac = factorizar(895);
+		HashMap<Long, Integer> fac = factorizar(100000000000000L);
 		System.out.println(fac.toString());
 	}
 
-	public static HashMap<Integer, Integer> factorizar(int n){
-		HashMap<Integer, Integer> factores = new HashMap<Integer, Integer>();
-
-		if(n >= menorFactor.length){
+	public static HashMap<Long, Integer> factorizar(long n){
+		HashMap<Long, Integer> factores = new HashMap<Long, Integer>();		
+				
+		if(n >= menorFactor.length){			
 			for(int p : primos){
 				if(n % p == 0){
 					int count = 0;
@@ -47,29 +47,31 @@ public class Factorizar {
 						n = n/p;
 						count++;
 					}
-					factores.put(p, count);
+					factores.put((long)p, count);
 				}
 				if(n < menorFactor.length) break;
 			}
 			if(n >= menorFactor.length){
 				factores.put(n, 1);
 				return factores;
-			}
+			}			
 		}
-
-		while(n > 1){
-			int f = menorFactor[n];
+		
+		int m = (int) n;
+				
+		while(m > 1){
+			int f = menorFactor[m];
 			if(f == -1){
-				f = n;
+				f = m;
 			}
-			if(factores.containsKey(f)){
-				factores.put(f, factores.get(f)+1);
+			if(factores.containsKey((long)f)){
+				factores.put((long)f, factores.get((long)f)+1);
 			}else{
-				factores.put(f, 1);
+				factores.put((long)f, 1);
 			}
-			n = n / f;
-		}
-
+			m = m / f;
+		}		
+		
 		return factores;
 	}
 

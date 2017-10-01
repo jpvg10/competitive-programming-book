@@ -190,8 +190,8 @@ Este algoritmo (Sparse Table) hace un pre-procesamiento del array en \( O(n \log
 	
 	El método retorna un HashMap donde la \emph{clave} es el factor primo \( p_{i} \) y el \emph{valor} su multiplicidad \( a_{i} \). Se puede modificar fácilmente para retornar una lista de todos los factores, o retornar la cantidad de factores.
 	
-	Con algunas modificaciones, puede funcionar más o menos hasta \( n = 10^{12} \).
-	\lstinputlisting[firstline=30, lastline=74]{./src/Factorizar.java}
+	Funciona aproximadamente hasta \( n = 10^{14} \).
+	\lstinputlisting[firstline=30, lastline=76]{./src/Factorizar.java}
 	
 	\subsection{Fórmulas}
 	Para \( n \geq 2 \) es posible calcular algunas cosas partiendo de la factorización prima de \( n \):
