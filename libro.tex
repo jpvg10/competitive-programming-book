@@ -235,11 +235,11 @@ Este algoritmo (Sparse Table) hace un pre-procesamiento del array en \( O(n \log
 		\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!} 
 	\]
 
-	Sin embargo no es muy práctico usar esta fórmula ya que involucra factoriales. Se puede utilizar la recurrencia \( \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} \) para generar todos los coeficientes binomiales \( \binom{i}{j} \) para \( 0 \leq i,j \leq n \).
+	Sin embargo no es muy práctico usar esta fórmula ya que involucra factoriales. Se puede utilizar la recurrencia \( \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} \) para generar todos los coeficientes binomiales \( \binom{i}{j} \) para \( 0 \leq i,j \leq n \). En la matriz, \( C[i][j] = \binom{i}{j} \).
 
-	\lstinputlisting[firstline=4, lastline=14]{./src/CoefBinomial.java}
+	\lstinputlisting[firstline=3, lastline=14]{./src/CoefBinomial.java}
 
-	Este código funciona para \( n \leq 67 \). Más allá, se requiere usar BigInteger.
+	 Este código funciona para \( n \leq 66 \). Más allá, se requiere usar una matriz de tipo BigInteger.
 
 	\subsection{Multiconjuntos}
 	Un multiconjunto es un conjunto que permite elementos repetidos. El número de multiconjuntos de cardinalidad \( k \), con elementos tomados de un conjunto de cardinalidad \( n \), se puede contar como:
